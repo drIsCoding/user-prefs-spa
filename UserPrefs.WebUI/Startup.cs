@@ -5,6 +5,8 @@ using Microsoft.AspNetCore.SpaServices.ReactDevelopmentServer;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
+using UserPrefs.Application.Interfaces.Repositories;
+using UserPrefs.Infrastructure.Repositories;
 
 namespace UserPrefs.WebUI
 {
@@ -28,6 +30,8 @@ namespace UserPrefs.WebUI
             {
                 configuration.RootPath = "ClientApp/build";
             });
+
+            services.AddScoped<IUserPreferencesRepository, UserPreferencesRepository>();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
