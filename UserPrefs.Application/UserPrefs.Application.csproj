@@ -8,5 +8,9 @@
     <Folder Include="Interfaces\" />
   </ItemGroup>
 
+  <ItemGroup>
+    <ProjectReference Include="..\UserPrefs.Domain\UserPrefs.Domain.csproj" />
+  </ItemGroup>
+
 
 </Project>

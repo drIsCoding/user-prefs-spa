@@ -11,4 +11,3 @@ namespace UserPrefs.Application.Interfaces.Repositories
         public IEnumerable<User> GetAll();
     }
 }
-s
