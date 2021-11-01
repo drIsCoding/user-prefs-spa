@@ -2,10 +2,11 @@
 Object.defineProperty(exports, "__esModule", { value: true });
 var React = require("react");
 var react_1 = require("react");
-var usersApi_1 = require("../api/usersApi");
+var usersApi_1 = require("../../api/usersApi");
 var reactstrap_1 = require("reactstrap");
 var createUserModal_1 = require("./createUserModal");
-function UserPreferences() {
+var usersTable_1 = require("./usersTable");
+function UserPreferencesContainer() {
     var _a = react_1.useState(true), loading = _a[0], setLoading = _a[1];
     var _b = react_1.useState(), userData = _b[0], setUserData = _b[1];
     var _c = react_1.useState(false), showModal = _c[0], setShowModal = _c[1];
@@ -34,7 +35,7 @@ function UserPreferences() {
     var contents = loading
         ? React.createElement("p", null,
             React.createElement("em", null, "Loading..."))
-        : renderUserData(userData);
+        : React.createElement(usersTable_1.default, { data: userData });
     return (React.createElement("div", null,
         React.createElement("h1", { id: "tabelLabel" }, "User Preferences"),
         React.createElement("p", null, "This component is getting user prefs data"),
@@ -42,5 +43,5 @@ function UserPreferences() {
         React.createElement(createUserModal_1.default, { visible: showModal }),
         contents));
 }
-exports.default = UserPreferences;
-//# sourceMappingURL=userPreferences.js.map
+exports.default = UserPreferencesContainer;
+//# sourceMappingURL=userPreferencesContainer.js.map

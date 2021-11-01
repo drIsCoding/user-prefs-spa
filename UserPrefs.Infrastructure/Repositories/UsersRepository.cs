@@ -16,7 +16,7 @@ namespace UserPrefs.Infrastructure.Repositories
             using StreamReader r = File.OpenText(@"C:\Users\Devorah Raice\Documents\GitHub\UserPrefs\AppData\userPrefs.json");
             string json = r.ReadToEnd();
             IEnumerable<User> items = JsonConvert.DeserializeObject<IEnumerable<User>>(json);
-            return items.Take(10);
+            return items;
         }
 
         public void CreateUser(User user)

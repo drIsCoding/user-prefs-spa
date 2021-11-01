@@ -1,6 +1,6 @@
 ﻿import * as React from 'react'
 import { useEffect, useState } from "react"
-import CreateUserForm from './common/createUserForm'
+import CreateUserForm from '../common/createUserForm'
 import {
     Modal, ModalFooter,
     ModalHeader, ModalBody
