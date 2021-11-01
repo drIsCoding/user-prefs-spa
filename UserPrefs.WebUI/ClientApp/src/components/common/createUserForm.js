@@ -12,13 +12,23 @@ var __assign = (this && this.__assign) || function () {
 };
 Object.defineProperty(exports, "__esModule", { value: true });
 var React = require("react");
+var react_1 = require("react");
 var react_hook_form_1 = require("react-hook-form");
+var react_color_1 = require("react-color");
 ;
 function CreateUserForm() {
     var _a = react_hook_form_1.useForm(), register = _a.register, setValue = _a.setValue, handleSubmit = _a.handleSubmit, errors = _a.formState.errors;
+    var _b = react_1.useState("None"), chosenColor = _b[0], setChosencColor = _b[1];
     var onSubmit = function (data, event) {
         console.log(data);
         event.preventDefault();
+    };
+    var handleColorChange = function (color, event) {
+        console.log(color, event);
+        setChosencColor(color.hex);
+    };
+    var handleColorHover = function (color, event) {
+        //console.log(color, event);
     };
     return (React.createElement("form", { onSubmit: handleSubmit(onSubmit) },
         React.createElement("div", { className: "form-group" },
@@ -35,7 +45,10 @@ function CreateUserForm() {
                     React.createElement("label", null, "Age"),
                     React.createElement("input", __assign({ type: "number", min: "1", max: "120", className: "form-control " + (errors.age ? 'is-invalid' : ''), name: "age" }, register("age", { required: true }))),
                     errors.age && React.createElement("div", { className: "invalid-feedback" }, "Age is required."))),
-            React.createElement("div", { className: "col-sm" }, "Hi!")),
+            React.createElement("div", { className: "col-sm" },
+                React.createElement("label", null, "Choose color preference"),
+                React.createElement("input", { type: "text", readOnly: true, className: "form-control-plaintext", id: "chosenColor", name: "chosenColor", value: chosenColor }),
+                React.createElement(react_color_1.CirclePicker, { onChange: handleColorChange, onSwatchHover: handleColorHover }))),
         React.createElement("button", { className: "btn btn-primary", type: "submit" }, "Submit")));
 }
 exports.default = CreateUserForm;

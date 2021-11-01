@@ -1,6 +1,7 @@
 ﻿import * as React from "react";
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 import { useForm } from "react-hook-form";
+import { CirclePicker } from 'react-color'
 
 interface FormData {
     firstName: string,
@@ -9,11 +10,21 @@ interface FormData {
 };
 export default function CreateUserForm() {
     const { register, setValue, handleSubmit, formState: { errors } } = useForm<FormData>();
+    const [chosenColor, setChosencColor] = useState("None");
 
     const onSubmit = (data, event) => {
         console.log(data);
         event.preventDefault();
     };
+
+    const handleColorChange = (color, event) => {
+        console.log(color, event);
+        setChosencColor(color.hex);
+    }
+
+    const handleColorHover = (color, event) => {
+        //console.log(color, event);
+    }
 
     return (
         <form onSubmit={handleSubmit(onSubmit)}>
@@ -41,7 +52,10 @@ export default function CreateUserForm() {
                     </div>
                 </div>
                 <div className="col-sm">
-                    Hi!
+                    <label>Choose color preference</label>
+                    <input type="text" readOnly className="form-control-plaintext"
+                        id="chosenColor" name="chosenColor" value={chosenColor}/>
+                    <CirclePicker onChange={handleColorChange} onSwatchHover={handleColorHover}/>
                 </div>
             </div>
             <button className="btn btn-primary" type="submit">Submit</button>
