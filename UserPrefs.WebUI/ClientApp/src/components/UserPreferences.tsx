@@ -28,7 +28,7 @@ export default function UserPreferences() {
                             <td>{u.firstName}</td>
                             <td>{u.lastName}</td>
                             <td>{u.age}</td>
-                            <td>{u.colorID}</td>
+                            <td>{u.colorHex}</td>
                         </tr>
                     )}
                 </tbody>

@@ -22,7 +22,7 @@ function UserPreferences() {
                     React.createElement("td", null, u.firstName),
                     React.createElement("td", null, u.lastName),
                     React.createElement("td", null, u.age),
-                    React.createElement("td", null, u.colorID));
+                    React.createElement("td", null, u.colorHex));
             }))));
     };
     react_1.useEffect(function () {

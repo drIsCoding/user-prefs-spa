@@ -1,52 +1,62 @@
 [
   {
-    "id": 1,
-    "name": "red",
-    "hex": "#e60000"
+    "hex": "#ffeb3b",
+    "name": "yellow"
   },
   {
-    "id": 2,
-    "name": "orange",
-    "hex": "#ff8000"
+    "hex": "#ffc107",
+    "name": "amber"
   },
   {
-    "id": 3,
-    "name": "yellow",
-    "hex": "#ffff00"
+    "hex": "#ff9800",
+    "name": "orange"
   },
   {
-    "id": 4,
-    "name": "green",
-    "hex": "#2f8e1f"
+    "hex": "#f44336",
+    "name": "red"
   },
   {
-    "id": 5,
-    "name": "blue",
-    "hex": "#2c00b2"
+    "hex": "#ff5890",
+    "name": "pink"
   },
   {
-    "id": 6,
-    "name": "purple",
-    "hex": "#976ac2"
+    "hex": "#9c27b0",
+    "name": "purple"
   },
   {
-    "id": 7,
-    "name": "brown",
-    "hex": "#4b3800"
+    "hex": "#673ab7",
+    "name": "lavender"
   },
   {
-    "id": 8,
-    "name": "white",
-    "hex": "#ffffff"
+    "hex": "#3f51b5",
+    "name": "blue"
   },
   {
-    "id": 9,
-    "name": "black",
-    "hex": "#000000"
+    "hex": "#2196f3",
+    "name": "azure"
   },
   {
-    "id": 10,
-    "name": "grey",
-    "hex": "#999999"
+    "hex": "#00bcd4",
+    "name": "topaz"
+  },
+  {
+    "hex": "#009688",
+    "name": "teal"
+  },
+  {
+    "hex": "#4caf50",
+    "name": "green"
+  },
+  {
+    "hex": "#795548",
+    "name": "brown"
+  },
+  {
+    "hex": "#607d8b",
+    "name": "grey"
+  },
+  {
+    "hex": "#000000",
+    "name": "black"
   }
 ]

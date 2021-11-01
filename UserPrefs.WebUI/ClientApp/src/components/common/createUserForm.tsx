@@ -2,15 +2,23 @@
 import { useEffect, useState } from "react";
 import { useForm } from "react-hook-form";
 import { CirclePicker } from 'react-color'
+import PreferencesApi from "../../api/preferencesApi";
 
 interface FormData {
     firstName: string,
     lastName: string,
-    age: number
+    age: number,
+    chosenColor: string,
+    displayColor: string
 };
 export default function CreateUserForm() {
     const { register, setValue, handleSubmit, formState: { errors } } = useForm<FormData>();
-    const [chosenColor, setChosencColor] = useState("None");
+    const [chosenColor, setChosencColor] = useState("");
+    const [chosenDisplayColor, setChosenDisplayColor] = useState("");
+    const [hexValues, setHexValues] = useState<string[]>([]);
+
+    //for fast color name lookup
+    const [colorsDict, setColorsDict] = useState({});
 
     const onSubmit = (data, event) => {
         console.log(data);
@@ -20,11 +28,30 @@ export default function CreateUserForm() {
     const handleColorChange = (color, event) => {
         console.log(color, event);
         setChosencColor(color.hex);
+        setChosenDisplayColor(colorsDict[color.hex]);
     }
 
-    const handleColorHover = (color, event) => {
-        //console.log(color, event);
-    }
+    useEffect(() => {
+        PreferencesApi.getAllColors().then(
+            (colors => {
+
+
+                //takeoff on this: 
+                // https://dev.to/afewminutesofcode/how-to-convert-an-array-into-an-object-in-javascript-25a4
+                const colorsObj = colors.reduce((obj, item) => {
+                    return {
+                        ...obj,
+                        [item["hex"]]: item.name,
+                    };
+                }, {});
+
+                setColorsDict(colorsObj);
+
+                const hexArray = colors.map(c => c.hex);
+                setHexValues(hexArray);
+            })
+        );
+    }, [])
 
     return (
         <form onSubmit={handleSubmit(onSubmit)}>
@@ -53,12 +80,17 @@ export default function CreateUserForm() {
                 </div>
                 <div className="col-sm">
                     <label>Choose color preference</label>
+                    <span>Chosen color:</span>
                     <input type="text" readOnly className="form-control-plaintext"
-                        id="chosenColor" name="chosenColor" value={chosenColor}/>
-                    <CirclePicker width="210px" onChange={handleColorChange} onSwatchHover={handleColorHover}
-                        colors={["#ffeb3b", "#ffc107", "#ff9800", "#ff5722", "#e91e63", "#9c27b0",
-                            "#673ab7", "#3f51b5", "#2196f3", "#00bcd4", "#009688",
-                            "#4caf50", "#795548", "#607d8b", "#000000"]}  />
+                        id="displayColor" name="displayColor" value={chosenDisplayColor}
+                        {...register("displayColor", { required: true })}
+                    />
+                    {errors.displayColor && <div className="invalid-feedback">You must pick a color</div>}
+                    <input type="hidden" name="chosenColor" value={chosenColor}
+                        {...register("chosenColor", { required: true })} />
+
+                    <CirclePicker width="210px" onChange={handleColorChange}
+                        colors={hexValues} />
                 </div>
             </div>
             <button className="btn btn-primary" type="submit">Submit</button>

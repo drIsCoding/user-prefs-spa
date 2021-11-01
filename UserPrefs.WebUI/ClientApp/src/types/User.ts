@@ -3,5 +3,5 @@
     firstName: string,
     lastName: string,
     age: string,
-    colorID: number
+    colorHex: string
 }
