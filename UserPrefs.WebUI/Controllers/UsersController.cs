@@ -30,6 +30,13 @@ namespace UserPrefs.WebUI.Controllers
             return query.GetAll();
         }
 
+        [HttpGet]
+        public Dictionary<int, Dictionary<string, int>> GetStats()
+        {
+            var query = new GetUsers(_usersRepo);
+            return query.GetStats();
+        }
+
         [HttpPost]
         [Route("create")]
         public void CreateUser(User user)

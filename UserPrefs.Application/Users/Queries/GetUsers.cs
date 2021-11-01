@@ -17,15 +17,14 @@ namespace UserPrefs.Application.Users.Queries
         }
         public IEnumerable<User> GetAll()
         {
-            var users = _repository.GetAll();
-            var stats = GenerateStats(users);
-            return users;
+            return _repository.GetAll();
         }
 
-        public void GetStats()
+        public Dictionary<int, Dictionary<string, int>> GetStats()
         {
             var users = GetAll();
-
+            var stats = GenerateStats(users);
+            return stats;
         }
 
         private Dictionary<int, Dictionary<string, int>> GenerateStats(IEnumerable<User> users)
