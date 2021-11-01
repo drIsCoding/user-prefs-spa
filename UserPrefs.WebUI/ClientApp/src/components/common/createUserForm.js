@@ -29,7 +29,14 @@ function CreateUserForm() {
             React.createElement("label", null, "Last Name"),
             React.createElement("input", __assign({ className: "form-control " + (errors.lastName ? 'is-invalid' : ''), name: "lastName" }, register("lastName", { required: true }))),
             errors.lastName && React.createElement("div", { className: "invalid-feedback" }, "Last Name is required.")),
-        React.createElement("button", { type: "submit" }, "Submit")));
+        React.createElement("div", { className: "row" },
+            React.createElement("div", { className: "col-sm" },
+                React.createElement("div", { className: "form-group" },
+                    React.createElement("label", null, "Age"),
+                    React.createElement("input", __assign({ type: "number", min: "1", max: "120", className: "form-control " + (errors.age ? 'is-invalid' : ''), name: "age" }, register("age", { required: true }))),
+                    errors.age && React.createElement("div", { className: "invalid-feedback" }, "Age is required."))),
+            React.createElement("div", { className: "col-sm" }, "Hi!")),
+        React.createElement("button", { className: "btn btn-primary", type: "submit" }, "Submit")));
 }
 exports.default = CreateUserForm;
 //# sourceMappingURL=createUserForm.js.map

@@ -30,8 +30,21 @@ export default function CreateUserForm() {
                     name="lastName" {...register("lastName", { required: true })} />
                 {errors.lastName && <div className="invalid-feedback">Last Name is required.</div>}
             </div>
-            <button
-                type="submit">Submit</button>
+            <div className="row">
+                <div className="col-sm">
+                    <div className="form-group">
+                        <label>Age</label>
+                        <input type="number" min="1" max="120"
+                            className={`form-control ${errors.age ? 'is-invalid' : ''}`}
+                            name="age" {...register("age", { required: true })} />
+                        {errors.age && <div className="invalid-feedback">Age is required.</div>}
+                    </div>
+                </div>
+                <div className="col-sm">
+                    Hi!
+                </div>
+            </div>
+            <button className="btn btn-primary" type="submit">Submit</button>
         </form>
     )
 }
