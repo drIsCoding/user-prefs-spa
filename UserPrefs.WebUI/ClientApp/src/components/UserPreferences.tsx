@@ -1,4 +1,5 @@
-﻿import React, { useState, useEffect } from 'react'
+﻿import * as React from 'react'
+import { useEffect, useState } from "react"
 import { User } from '../types/User'
 import UsersApi from '../api/usersApi'
 import { Button } from 'reactstrap'

@@ -1,23 +1,37 @@
-﻿import React, { useEffect, useState } from "react";
-import PreferencesApi from "../../api/preferencesApi";
-import {Label, Input} from 'reactstrap'
-import { Color } from "../../types/color";
-import { GithubPicker } from 'react-color'
+﻿import * as React from "react";
+import { useEffect } from "react";
+import { useForm } from "react-hook-form";
 
+interface FormData {
+    firstName: string,
+    lastName: string,
+    age: number
+};
 export default function CreateUserForm() {
-    const [colors, setColors] = useState<Color[]>([]);
+    const { register, setValue, handleSubmit, formState: { errors } } = useForm<FormData>();
 
-    useEffect(() => {
-        PreferencesApi.getAllColors().then(
-            (c => {
-                setColors(c);
-            })
-        );
-    }, [])
+    const onSubmit = (data, event) => {
+        console.log(data);
+        event.preventDefault();
+    };
 
-    return <>
-
-        <GithubPicker colors={colors.map(c => c.hex)} onSwatchHover={(c, e) => console.log(c,e)}/>
-       
-        </>
+    return (
+        <form onSubmit={handleSubmit(onSubmit)}>
+            <div className="form-group">
+                <label>First Name</label>
+                <input className={`form-control ${errors.firstName ? 'is-invalid' : ''}`}
+                    id="firstName"
+                    name="firstName" {...register("firstName", { required: true })} />
+                {errors.firstName && <div className="invalid-feedback">First Name is required.</div>}
+            </div>
+            <div className="form-group">
+                <label>Last Name</label>
+                <input className={`form-control ${errors.lastName ? 'is-invalid' : ''}`}
+                    name="lastName" {...register("lastName", { required: true })} />
+                {errors.lastName && <div className="invalid-feedback">Last Name is required.</div>}
+            </div>
+            <button
+                type="submit">Submit</button>
+        </form>
+    )
 }
