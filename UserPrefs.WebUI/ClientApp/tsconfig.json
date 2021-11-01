@@ -1,25 +1,37 @@
 {
   "compilerOptions": {
-    "target": "es5",
+    "jsx": "react",
+    "target": "ESNext",
+    "module": "esnext",
     "lib": [
-      "dom",
-      "dom.iterable",
-      "esnext"
+      "ESNext",
+      "DOM"
     ],
     "allowJs": true,
-    "skipLibCheck": true,
-    "esModuleInterop": true,
-    "allowSyntheticDefaultImports": true,
-    "strict": true,
-    "forceConsistentCasingInFileNames": true,
-    "module": "esnext",
-    "moduleResolution": "node",
-    "resolveJsonModule": true,
-    "isolatedModules": true,
+    "sourceMap": true,
+    "outDir": "./ClientApp/public",
     "noEmit": true,
-    "jsx": "react"
+    "strict": false,
+    "noImplicitAny": false,
+    "strictNullChecks": false,
+    "noImplicitThis": false,
+    "moduleResolution": "node",
+    "baseUrl": "src",
+    "typeRoots": [
+      "node_modules/@types"
+    ],
+    "types": [
+      "react-router-dom"
+    ],
+    "allowSyntheticDefaultImports": true,
+    "esModuleInterop": true,
+    "skipLibCheck": true,
+    "forceConsistentCasingInFileNames": true,
+    "resolveJsonModule": true,
+    "isolatedModules": true
   },
   "include": [
-    "src"
+    "src/**/*",
+    "global.d.ts"
   ]
 }

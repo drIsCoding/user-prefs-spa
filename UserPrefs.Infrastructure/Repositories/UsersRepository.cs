@@ -4,11 +4,11 @@ using System.Collections.Generic;
 using System.IO;
 using System.Text;
 using UserPrefs.Application.Interfaces.Repositories;
-using UserPrefs.Application.UserPreferences.Models;
+using UserPrefs.Application.Users.Models;
 
 namespace UserPrefs.Infrastructure.Repositories
 {
-    public class UserPreferencesRepository : IUserPreferencesRepository
+    public class UsersRepository : IUsersRepository
     {
         public IEnumerable<User> GetAll()
         {

@@ -3,14 +3,15 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using UserPrefs.Application.Interfaces.Repositories;
-using UserPrefs.Application.UserPreferences.Models;
+using UserPrefs.Application.Users.Models;
 
-namespace UserPrefs.Application.UserPreferences.Queries
+namespace UserPrefs.Application.Users.Queries
 {
-    public class GetAllUserPreferences
+    public class GetUsers
     {
-        private readonly IUserPreferencesRepository _repository;
-        public GetAllUserPreferences(IUserPreferencesRepository repository)
+        private readonly IUsersRepository _repository;
+
+        public GetUsers(IUsersRepository repository)
         {
             _repository = repository;
         }

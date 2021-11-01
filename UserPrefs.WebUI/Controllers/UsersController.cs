@@ -5,18 +5,18 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using UserPrefs.Application.Interfaces.Repositories;
-using UserPrefs.Application.UserPreferences.Models;
-using UserPrefs.Application.UserPreferences.Queries;
+using UserPrefs.Application.Users.Models;
+using UserPrefs.Application.Users.Queries;
 
 namespace UserPrefs.WebUI.Controllers
 {
     [ApiController]
-    [Route("api/users/preferences")]
-    public class UserPrefsController : ControllerBase
+    [Route("api/users")]
+    public class UsersController : ControllerBase
     {
-        private readonly IUserPreferencesRepository _prefsRepo;
+        private readonly IUsersRepository _prefsRepo;
 
-        public UserPrefsController(IUserPreferencesRepository prefsRepo)
+        public UsersController(IUsersRepository prefsRepo)
         {
             _prefsRepo = prefsRepo;
         }
@@ -24,7 +24,7 @@ namespace UserPrefs.WebUI.Controllers
         [HttpGet]
         public IEnumerable<User> GetAll()
         {
-            var query = new GetAllUserPreferences(_prefsRepo);
+            var query = new GetUsers(_prefsRepo);
             return query.GetAll();
         }
     }

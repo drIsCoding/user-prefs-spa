@@ -21,7 +21,9 @@
   </ItemGroup>
 
   <ItemGroup>
+    <None Remove="ClientApp\src\api\usersApi.ts" />
     <None Remove="ClientApp\src\components\UserPreferences.tsx" />
+    <None Remove="ClientApp\src\types\User.ts" />
   </ItemGroup>
 
   <ItemGroup>
@@ -30,7 +32,9 @@
   </ItemGroup>
 
   <ItemGroup>
+    <TypeScriptCompile Include="ClientApp\src\api\usersApi.ts" />
     <TypeScriptCompile Include="ClientApp\src\components\UserPreferences.tsx" />
+    <TypeScriptCompile Include="ClientApp\src\types\User.ts" />
   </ItemGroup>
 
   <Target Name="DebugEnsureNodeEnv" BeforeTargets="Build" Condition=" '$(Configuration)' == 'Debug' And !Exists('$(SpaRoot)node_modules') ">

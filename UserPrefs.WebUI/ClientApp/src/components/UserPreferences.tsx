@@ -1,11 +1,13 @@
 ﻿import React, { useState, useEffect } from 'react'
+import { User } from '../types/User'
+import UsersApi from '../api/usersApi'
 
 
 export default function UserPreferences() {
     const [loading, setLoading] = useState(true);
-    const [userData, setUserData] = useState(true);
+    const [userData, setUserData] = useState<User[]>();
 
-    const renderUserData = (userData) => {
+    const renderUserData = (userData: User[]) => {
         return (
             <table className='table table-striped' aria-labelledby="tabelLabel">
                 <thead>
@@ -18,7 +20,7 @@ export default function UserPreferences() {
                 </thead>
                 <tbody>
                     {userData.map(u =>
-                        <tr key={u.ID}>
+                        <tr key={u.id}>
                             <td>{u.firstName}</td>
                             <td>{u.lastName}</td>
                             <td>{u.age}</td>
@@ -32,17 +34,12 @@ export default function UserPreferences() {
 
 
     useEffect(() => {
-        async function fetchUserData() {
-            let response = await fetch('api/users/preferences')
-            response = await response.json()
-            setUserData(response);
-            setLoading(false);
-            console.log(response);
-        }
-
-        console.log("you are here!");
-
-        fetchUserData();
+        UsersApi.getAllUsers().then(
+            (u => {
+                setUserData(u);
+                setLoading(false);
+            })
+        );
     }, [])
 
     let contents = loading

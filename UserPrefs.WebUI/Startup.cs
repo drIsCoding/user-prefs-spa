@@ -31,7 +31,7 @@ namespace UserPrefs.WebUI
                 configuration.RootPath = "ClientApp/build";
             });
 
-            services.AddScoped<IUserPreferencesRepository, UserPreferencesRepository>();
+            services.AddScoped<IUsersRepository, UsersRepository>();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
