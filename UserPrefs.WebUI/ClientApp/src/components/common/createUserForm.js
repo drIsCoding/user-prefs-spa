@@ -16,6 +16,7 @@ var react_1 = require("react");
 var react_hook_form_1 = require("react-hook-form");
 var react_color_1 = require("react-color");
 var preferencesApi_1 = require("../../api/preferencesApi");
+var usersApi_1 = require("../../api/usersApi");
 ;
 function CreateUserForm() {
     var _a = react_hook_form_1.useForm(), register = _a.register, setValue = _a.setValue, handleSubmit = _a.handleSubmit, errors = _a.formState.errors;
@@ -25,8 +26,16 @@ function CreateUserForm() {
     //for fast color name lookup
     var _e = react_1.useState({}), colorsDict = _e[0], setColorsDict = _e[1];
     var onSubmit = function (data, event) {
+        console.log("submitting form!");
         console.log(data);
         event.preventDefault();
+        var userForm = {
+            firstName: data.firstName,
+            lastName: data.lastName,
+            age: parseInt(data.age),
+            colorHex: chosenColor
+        };
+        usersApi_1.default.createUser(userForm);
     };
     var handleColorChange = function (color, event) {
         console.log(color, event);
@@ -64,9 +73,8 @@ function CreateUserForm() {
             React.createElement("div", { className: "col-sm" },
                 React.createElement("label", null, "Choose color preference"),
                 React.createElement("span", null, "Chosen color:"),
-                React.createElement("input", __assign({ type: "text", readOnly: true, className: "form-control-plaintext", id: "displayColor", name: "displayColor", value: chosenDisplayColor }, register("displayColor", { required: true }))),
-                errors.displayColor && React.createElement("div", { className: "invalid-feedback" }, "You must pick a color"),
-                React.createElement("input", __assign({ type: "hidden", name: "chosenColor", value: chosenColor }, register("chosenColor", { required: true }))),
+                React.createElement("input", { type: "text", readOnly: true, className: "form-control-plaintext", id: "displayColor", name: "displayColor", value: chosenDisplayColor }),
+                React.createElement("input", __assign({ type: "hidden", name: "colorHex", value: chosenColor }, register("colorHex"))),
                 React.createElement(react_color_1.CirclePicker, { width: "210px", onChange: handleColorChange, colors: hexValues }))),
         React.createElement("button", { className: "btn btn-primary", type: "submit" }, "Submit")));
 }

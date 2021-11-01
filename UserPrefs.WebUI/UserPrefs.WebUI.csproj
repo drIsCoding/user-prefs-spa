@@ -27,6 +27,7 @@
     <None Remove="ClientApp\src\components\createUserModal.tsx" />
     <None Remove="ClientApp\src\components\UserPreferences.tsx" />
     <None Remove="ClientApp\src\types\color.ts" />
+    <None Remove="ClientApp\src\types\forms.ts" />
     <None Remove="ClientApp\src\types\User.ts" />
   </ItemGroup>
 
@@ -42,6 +43,7 @@
     <TypeScriptCompile Include="ClientApp\src\components\createUserModal.tsx" />
     <TypeScriptCompile Include="ClientApp\src\components\userPreferences.tsx" />
     <TypeScriptCompile Include="ClientApp\src\types\color.ts" />
+    <TypeScriptCompile Include="ClientApp\src\types\forms.ts" />
     <TypeScriptCompile Include="ClientApp\src\types\user.ts" />
   </ItemGroup>
 

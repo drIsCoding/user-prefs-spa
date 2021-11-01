@@ -1,5 +1,4 @@
-﻿export interface User {
-    id: string,
+﻿export interface CreateUserForm {
     firstName: string,
     lastName: string,
     age: number,

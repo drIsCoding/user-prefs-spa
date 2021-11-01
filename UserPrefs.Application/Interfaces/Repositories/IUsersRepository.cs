@@ -9,5 +9,7 @@ namespace UserPrefs.Application.Interfaces.Repositories
     public interface IUsersRepository
     {
         public IEnumerable<User> GetAll();
+
+        public void CreateUser(User user);
     }
 }

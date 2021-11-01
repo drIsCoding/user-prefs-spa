@@ -18,5 +18,12 @@ namespace UserPrefs.Infrastructure.Repositories
             IEnumerable<User> items = JsonConvert.DeserializeObject<IEnumerable<User>>(json);
             return items.Take(10);
         }
+
+        public void CreateUser(User user)
+        {
+            using StreamWriter sw = new StreamWriter(@"C:\Users\Devorah Raice\Documents\GitHub\UserPrefs\AppData\createdUsers.json");
+            string jsonUser = JsonConvert.SerializeObject(user);
+            sw.WriteLine(jsonUser);
+        }
     }
 }

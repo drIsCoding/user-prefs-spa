@@ -3,12 +3,14 @@ import { useEffect, useState } from "react";
 import { useForm } from "react-hook-form";
 import { CirclePicker } from 'react-color'
 import PreferencesApi from "../../api/preferencesApi";
+import UsersApi from "../../api/usersApi";
+import { CreateUserForm } from "../../types/forms";
 
 interface FormData {
     firstName: string,
     lastName: string,
-    age: number,
-    chosenColor: string,
+    age: string,
+    colorHex: string,
     displayColor: string
 };
 export default function CreateUserForm() {
@@ -20,9 +22,17 @@ export default function CreateUserForm() {
     //for fast color name lookup
     const [colorsDict, setColorsDict] = useState({});
 
-    const onSubmit = (data, event) => {
+    const onSubmit = (data: FormData, event) => {
+        console.log("submitting form!");
         console.log(data);
         event.preventDefault();
+        const userForm: CreateUserForm = {
+            firstName: data.firstName,
+            lastName: data.lastName,
+            age: parseInt(data.age),
+            colorHex: chosenColor
+        }
+        UsersApi.createUser(userForm);
     };
 
     const handleColorChange = (color, event) => {
@@ -34,7 +44,6 @@ export default function CreateUserForm() {
     useEffect(() => {
         PreferencesApi.getAllColors().then(
             (colors => {
-
 
                 //takeoff on this: 
                 // https://dev.to/afewminutesofcode/how-to-convert-an-array-into-an-object-in-javascript-25a4
@@ -83,11 +92,8 @@ export default function CreateUserForm() {
                     <span>Chosen color:</span>
                     <input type="text" readOnly className="form-control-plaintext"
                         id="displayColor" name="displayColor" value={chosenDisplayColor}
-                        {...register("displayColor", { required: true })}
                     />
-                    {errors.displayColor && <div className="invalid-feedback">You must pick a color</div>}
-                    <input type="hidden" name="chosenColor" value={chosenColor}
-                        {...register("chosenColor", { required: true })} />
+                    <input type="hidden" name="colorHex" value={chosenColor} {...register("colorHex")} />
 
                     <CirclePicker width="210px" onChange={handleColorChange}
                         colors={hexValues} />
