@@ -48,7 +48,9 @@ function CreateUserForm() {
             React.createElement("div", { className: "col-sm" },
                 React.createElement("label", null, "Choose color preference"),
                 React.createElement("input", { type: "text", readOnly: true, className: "form-control-plaintext", id: "chosenColor", name: "chosenColor", value: chosenColor }),
-                React.createElement(react_color_1.CirclePicker, { onChange: handleColorChange, onSwatchHover: handleColorHover }))),
+                React.createElement(react_color_1.CirclePicker, { width: "210px", onChange: handleColorChange, onSwatchHover: handleColorHover, colors: ["#ffeb3b", "#ffc107", "#ff9800", "#ff5722", "#e91e63", "#9c27b0",
+                        "#673ab7", "#3f51b5", "#2196f3", "#00bcd4", "#009688",
+                        "#4caf50", "#795548", "#607d8b", "#000000"] }))),
         React.createElement("button", { className: "btn btn-primary", type: "submit" }, "Submit")));
 }
 exports.default = CreateUserForm;
