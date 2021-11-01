@@ -3,13 +3,11 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 16
 VisualStudioVersion = 16.0.31729.503
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "UserPrefs.WebUI", "UserPrefs.WebUI\UserPrefs.WebUI.csproj", "{A3C67470-D464-472B-854D-8C5AE29679F0}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "UserPrefs.WebUI", "UserPrefs.WebUI\UserPrefs.WebUI.csproj", "{A3C67470-D464-472B-854D-8C5AE29679F0}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "UserPrefs.Application", "UserPrefs.Application\UserPrefs.Application.csproj", "{AA7D3BE3-A329-4902-9E7E-E41201571680}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "UserPrefs.Application", "UserPrefs.Application\UserPrefs.Application.csproj", "{AA7D3BE3-A329-4902-9E7E-E41201571680}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "UserPrefs.Domain", "UserPrefs.Domain\UserPrefs.Domain.csproj", "{59C051F7-9BEB-42C5-8202-EB7FFC03BE52}"
-EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "UserPrefs.Infrastructure", "UserPrefs.Infrastructure\UserPrefs.Infrastructure.csproj", "{8BA500BD-7F65-4D1E-BC60-627FE5A27B9B}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "UserPrefs.Infrastructure", "UserPrefs.Infrastructure\UserPrefs.Infrastructure.csproj", "{8BA500BD-7F65-4D1E-BC60-627FE5A27B9B}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -25,10 +23,6 @@ Global
 		{AA7D3BE3-A329-4902-9E7E-E41201571680}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{AA7D3BE3-A329-4902-9E7E-E41201571680}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{AA7D3BE3-A329-4902-9E7E-E41201571680}.Release|Any CPU.Build.0 = Release|Any CPU
-		{59C051F7-9BEB-42C5-8202-EB7FFC03BE52}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{59C051F7-9BEB-42C5-8202-EB7FFC03BE52}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{59C051F7-9BEB-42C5-8202-EB7FFC03BE52}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{59C051F7-9BEB-42C5-8202-EB7FFC03BE52}.Release|Any CPU.Build.0 = Release|Any CPU
 		{8BA500BD-7F65-4D1E-BC60-627FE5A27B9B}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{8BA500BD-7F65-4D1E-BC60-627FE5A27B9B}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{8BA500BD-7F65-4D1E-BC60-627FE5A27B9B}.Release|Any CPU.ActiveCfg = Release|Any CPU

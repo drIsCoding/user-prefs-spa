@@ -14,17 +14,17 @@ namespace UserPrefs.WebUI.Controllers
     [Route("api/users")]
     public class UsersController : ControllerBase
     {
-        private readonly IUsersRepository _prefsRepo;
+        private readonly IUsersRepository _usersRepo;
 
-        public UsersController(IUsersRepository prefsRepo)
+        public UsersController(IUsersRepository usersRepo)
         {
-            _prefsRepo = prefsRepo;
+            _usersRepo = usersRepo;
         }
 
         [HttpGet]
         public IEnumerable<User> GetAll()
         {
-            var query = new GetUsers(_prefsRepo);
+            var query = new GetUsers(_usersRepo);
             return query.GetAll();
         }
     }
