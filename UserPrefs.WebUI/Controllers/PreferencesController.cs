@@ -20,6 +20,7 @@ namespace UserPrefs.WebUI.Controllers
         }
 
         [HttpGet]
+        [Route("colors")]
         public IEnumerable<Color> GetAllColors()
         {
             var query = new GetColors(_prefsRepo);
