@@ -22,14 +22,28 @@ namespace UserPrefs.Infrastructure.Repositories
 
         public void CreateUser(User user)
         {
-            //get numRows + 1 for ID
-            int lineCount = File.ReadLines(FILE_LOCATION).Count();
+            var allUsers = GetAll().ToList();
 
-            user.ID = lineCount + 1;
+
+            //get numRows + 1 for ID
+            int newID = allUsers.Count + 1;
+
+            user.ID = newID;
             user.DateAdded = DateTime.Now;
+
+            allUsers.Add(user);
+
+            /*
+             Alternate options to re-reading the whole file when writing a user:
+                1) Cache the data on initial read, and then have it for write (and when write, update cache)
+                2) Use a text file instead of JSON
+                        Con: doesn't convert as nicely into objects as JSON does         
+             */
+
+
             using StreamWriter sw = new StreamWriter(FILE_LOCATION);
-            string jsonUser = JsonConvert.SerializeObject(user);
-            sw.WriteLine(jsonUser);
+            string jsonUsers = JsonConvert.SerializeObject(allUsers);
+            sw.WriteLine(jsonUsers);
         }
     }
 }
