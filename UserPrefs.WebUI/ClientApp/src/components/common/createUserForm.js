@@ -15,12 +15,12 @@ var React = require("react");
 var react_1 = require("react");
 var react_hook_form_1 = require("react-hook-form");
 var react_color_1 = require("react-color");
-var preferencesApi_1 = require("../../api/preferencesApi");
 var usersApi_1 = require("../../api/usersApi");
+var colorValues_1 = require("./colorValues");
 ;
 function CreateUserForm() {
     var _a = react_hook_form_1.useForm(), register = _a.register, setValue = _a.setValue, handleSubmit = _a.handleSubmit, errors = _a.formState.errors;
-    var _b = react_1.useState(""), chosenColor = _b[0], setChosencColor = _b[1];
+    var _b = react_1.useState(""), chosenColor = _b[0], setChosenColor = _b[1];
     var _c = react_1.useState(""), chosenDisplayColor = _c[0], setChosenDisplayColor = _c[1];
     var _d = react_1.useState([]), hexValues = _d[0], setHexValues = _d[1];
     //for fast color name lookup
@@ -39,22 +39,9 @@ function CreateUserForm() {
     };
     var handleColorChange = function (color, event) {
         console.log(color, event);
-        setChosencColor(color.hex);
-        setChosenDisplayColor(colorsDict[color.hex]);
+        setChosenColor(color.hex);
+        setChosenDisplayColor(colorValues_1.ColorsDictionary[color.hex]);
     };
-    react_1.useEffect(function () {
-        preferencesApi_1.default.getAllColors().then((function (colors) {
-            //takeoff on this: 
-            // https://dev.to/afewminutesofcode/how-to-convert-an-array-into-an-object-in-javascript-25a4
-            var colorsObj = colors.reduce(function (obj, item) {
-                var _a;
-                return __assign(__assign({}, obj), (_a = {}, _a[item["hex"]] = item.name, _a));
-            }, {});
-            setColorsDict(colorsObj);
-            var hexArray = colors.map(function (c) { return c.hex; });
-            setHexValues(hexArray);
-        }));
-    }, []);
     return (React.createElement("form", { onSubmit: handleSubmit(onSubmit) },
         React.createElement("div", { className: "form-group" },
             React.createElement("label", null, "First Name"),
@@ -75,7 +62,7 @@ function CreateUserForm() {
                 React.createElement("span", null, "Chosen color:"),
                 React.createElement("input", { type: "text", readOnly: true, className: "form-control-plaintext", id: "displayColor", name: "displayColor", value: chosenDisplayColor }),
                 React.createElement("input", __assign({ type: "hidden", name: "colorHex", value: chosenColor }, register("colorHex"))),
-                React.createElement(react_color_1.CirclePicker, { width: "210px", onChange: handleColorChange, colors: hexValues }))),
+                React.createElement(react_color_1.CirclePicker, { width: "210px", onChange: handleColorChange, colors: colorValues_1.HexArray }))),
         React.createElement("button", { className: "btn btn-primary", type: "submit" }, "Submit")));
 }
 exports.default = CreateUserForm;

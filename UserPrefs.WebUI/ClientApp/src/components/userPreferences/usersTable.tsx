@@ -3,33 +3,15 @@ import { useMemo } from 'react'
 import { useTable, usePagination, useSortBy, useFilters } from 'react-table'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faLongArrowAltDown, faLongArrowAltUp, faExchangeAlt } from '@fortawesome/free-solid-svg-icons'
-import PreferencesApi from '../../api/preferencesApi';
 import { TextFilter, SelectColumnFilter, NumberRangeColumnFilter } from './tableFilters'
 import ColorSwatch from "./colorSwatch"
+import {ColorsDictionary} from "../common/colorValues"
 
 export default function Table({ data }) {
 
     //for fast color name lookup
     const [colorsDict, setColorsDict] = React.useState({});
 
-
-    React.useEffect(() => {
-        PreferencesApi.getAllColors().then(
-            (colors => {
-
-                //takeoff on this: 
-                // https://dev.to/afewminutesofcode/how-to-convert-an-array-into-an-object-in-javascript-25a4
-                const colorsObj = colors.reduce((obj, item) => {
-                    return {
-                        ...obj,
-                        [item["hex"]]: item.name,
-                    };
-                }, {});
-
-                setColorsDict(colorsObj);
-            })
-        );
-    }, [])
 
     const columns = useMemo(() => [
         {
@@ -54,7 +36,7 @@ export default function Table({ data }) {
             Header: "Color",
             accessor: "colorHex",
             Cell: ({ value }) => {
-                return <div>{colorsDict[value]} <ColorSwatch hex={value}/></div>
+                return <div>{ColorsDictionary[value]} <ColorSwatch hex={value}/></div>
             },
             Filter: SelectColumnFilter,
             filter: 'equals'

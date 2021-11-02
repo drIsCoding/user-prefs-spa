@@ -9,7 +9,9 @@ import UserPreferencesContainer from './components/userPreferences/userPreferenc
 import './custom.css'
 import UserEntryContainer from './components/userEntry/userEntryContainer';
 
+
 export default class App extends Component {
+
     static displayName = App.name;
 
     render() {

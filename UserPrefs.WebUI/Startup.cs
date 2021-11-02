@@ -32,7 +32,6 @@ namespace UserPrefs.WebUI
             });
 
             services.AddScoped<IUsersRepository, UsersRepository>();
-            services.AddScoped<IPreferencesRepository, PreferencesRepository>();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.

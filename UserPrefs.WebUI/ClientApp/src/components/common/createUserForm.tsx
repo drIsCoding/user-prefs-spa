@@ -2,9 +2,9 @@
 import { useEffect, useState } from "react";
 import { useForm } from "react-hook-form";
 import { CirclePicker } from 'react-color'
-import PreferencesApi from "../../api/preferencesApi";
 import UsersApi from "../../api/usersApi";
 import { CreateUserForm } from "../../types/forms";
+import { ColorsDictionary, HexArray} from "./colorValues"
 
 interface FormData {
     firstName: string,
@@ -15,7 +15,7 @@ interface FormData {
 };
 export default function CreateUserForm() {
     const { register, setValue, handleSubmit, formState: { errors } } = useForm<FormData>();
-    const [chosenColor, setChosencColor] = useState("");
+    const [chosenColor, setChosenColor] = useState("");
     const [chosenDisplayColor, setChosenDisplayColor] = useState("");
     const [hexValues, setHexValues] = useState<string[]>([]);
 
@@ -37,30 +37,9 @@ export default function CreateUserForm() {
 
     const handleColorChange = (color, event) => {
         console.log(color, event);
-        setChosencColor(color.hex);
-        setChosenDisplayColor(colorsDict[color.hex]);
+        setChosenColor(color.hex);
+        setChosenDisplayColor(ColorsDictionary[color.hex]);
     }
-
-    useEffect(() => {
-        PreferencesApi.getAllColors().then(
-            (colors => {
-
-                //takeoff on this: 
-                // https://dev.to/afewminutesofcode/how-to-convert-an-array-into-an-object-in-javascript-25a4
-                const colorsObj = colors.reduce((obj, item) => {
-                    return {
-                        ...obj,
-                        [item["hex"]]: item.name,
-                    };
-                }, {});
-
-                setColorsDict(colorsObj);
-
-                const hexArray = colors.map(c => c.hex);
-                setHexValues(hexArray);
-            })
-        );
-    }, [])
 
     return (
         <form onSubmit={handleSubmit(onSubmit)}>
@@ -96,7 +75,7 @@ export default function CreateUserForm() {
                     <input type="hidden" name="colorHex" value={chosenColor} {...register("colorHex")} />
 
                     <CirclePicker width="210px" onChange={handleColorChange}
-                        colors={hexValues} />
+                        colors={HexArray} />
                 </div>
             </div>
             <button className="btn btn-primary" type="submit">Submit</button>

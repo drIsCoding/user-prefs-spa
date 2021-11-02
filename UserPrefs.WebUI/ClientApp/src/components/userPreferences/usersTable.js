@@ -27,24 +27,13 @@ var react_1 = require("react");
 var react_table_1 = require("react-table");
 var react_fontawesome_1 = require("@fortawesome/react-fontawesome");
 var free_solid_svg_icons_1 = require("@fortawesome/free-solid-svg-icons");
-var preferencesApi_1 = require("../../api/preferencesApi");
 var tableFilters_1 = require("./tableFilters");
 var colorSwatch_1 = require("./colorSwatch");
+var colorValues_1 = require("../common/colorValues");
 function Table(_a) {
     var data = _a.data;
     //for fast color name lookup
     var _b = React.useState({}), colorsDict = _b[0], setColorsDict = _b[1];
-    React.useEffect(function () {
-        preferencesApi_1.default.getAllColors().then((function (colors) {
-            //takeoff on this: 
-            // https://dev.to/afewminutesofcode/how-to-convert-an-array-into-an-object-in-javascript-25a4
-            var colorsObj = colors.reduce(function (obj, item) {
-                var _a;
-                return __assign(__assign({}, obj), (_a = {}, _a[item["hex"]] = item.name, _a));
-            }, {});
-            setColorsDict(colorsObj);
-        }));
-    }, []);
     var columns = react_1.useMemo(function () { return [
         {
             Header: "First Name",
@@ -70,7 +59,7 @@ function Table(_a) {
             Cell: function (_a) {
                 var value = _a.value;
                 return React.createElement("div", null,
-                    colorsDict[value],
+                    colorValues_1.ColorsDictionary[value],
                     " ",
                     React.createElement(colorSwatch_1.default, { hex: value }));
             },
