@@ -27,24 +27,7 @@ var react_1 = require("react");
 var react_table_1 = require("react-table");
 var preferencesApi_1 = require("../../api/preferencesApi");
 var tableFilters_1 = require("./tableFilters");
-//export function ColorSwatch({hex}) {
-//    const styleObj = {
-//        backgroundColor: { hex },
-//        width: "30px",
-//        height: "30px",
-//        outline: "none",
-//        borderRadius: "4px"
-//    }
-//     return <div style={styleObj}></div>
-//}
-// Define a default UI for filtering
-function DefaultColumnFilter(_a) {
-    var _b = _a.column, filterValue = _b.filterValue, preFilteredRows = _b.preFilteredRows, setFilter = _b.setFilter;
-    var count = preFilteredRows.length;
-    return (React.createElement("input", { value: filterValue || '', onChange: function (e) {
-            setFilter(e.target.value || undefined); // Set undefined to remove the filter entirely
-        }, placeholder: "Search " + count + " records..." }));
-}
+var colorSwatch_1 = require("./colorSwatch");
 function Table(_a) {
     var data = _a.data;
     //for fast color name lookup
@@ -86,7 +69,8 @@ function Table(_a) {
                 var value = _a.value;
                 return React.createElement("div", null,
                     colorsDict[value],
-                    " ");
+                    " ",
+                    React.createElement(colorSwatch_1.default, { hex: value }));
             },
             Filter: tableFilters_1.SelectColumnFilter,
             filter: 'equals'

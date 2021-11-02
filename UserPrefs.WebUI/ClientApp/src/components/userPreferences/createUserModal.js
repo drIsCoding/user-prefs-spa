@@ -4,7 +4,8 @@ var React = require("react");
 var createUserForm_1 = require("../common/createUserForm");
 var reactstrap_1 = require("reactstrap");
 function CreateUserModal(props) {
-    return React.createElement(reactstrap_1.Modal, { isOpen: props.visible, centered: true },
+    return React.createElement(reactstrap_1.Modal, { toggle: props.toggle, isOpen: props.visible, centered: true },
+        React.createElement(reactstrap_1.ModalHeader, { toggle: props.toggle }, "Create New User"),
         React.createElement(reactstrap_1.ModalBody, null,
             React.createElement(createUserForm_1.default, null)));
 }

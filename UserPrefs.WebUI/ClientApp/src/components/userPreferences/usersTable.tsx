@@ -3,36 +3,7 @@ import { useMemo } from 'react'
 import { useTable, usePagination, useSortBy, useFilters } from 'react-table'
 import PreferencesApi from '../../api/preferencesApi';
 import { TextFilter, SelectColumnFilter, NumberRangeColumnFilter } from './tableFilters'
-
-
-//export function ColorSwatch({hex}) {
-//    const styleObj = {
-//        backgroundColor: { hex },
-//        width: "30px",
-//        height: "30px",
-//        outline: "none",
-//        borderRadius: "4px"
-//    }
-
-//     return <div style={styleObj}></div>
-//}
-
-// Define a default UI for filtering
-function DefaultColumnFilter({
-    column: { filterValue, preFilteredRows, setFilter },
-}) {
-    const count = preFilteredRows.length
-
-    return (
-        <input
-            value={filterValue || ''}
-            onChange={e => {
-                setFilter(e.target.value || undefined) // Set undefined to remove the filter entirely
-            }}
-            placeholder={`Search ${count} records...`}
-        />
-    )
-}
+import ColorSwatch from "./colorSwatch"
 
 export default function Table({ data }) {
 
@@ -81,7 +52,7 @@ export default function Table({ data }) {
             Header: "Color",
             accessor: "colorHex",
             Cell: ({ value }) => {
-                return <div>{colorsDict[value]} </div>
+                return <div>{colorsDict[value]} <ColorSwatch hex={value}/></div>
             },
             Filter: SelectColumnFilter,
             filter: 'equals'

@@ -25,7 +25,7 @@ function UserPreferencesContainer() {
         React.createElement("h1", { id: "tabelLabel" }, "User Preferences"),
         React.createElement("p", null, "This component is getting user prefs data"),
         React.createElement(reactstrap_1.Button, { onClick: function () { return setShowModal(true); } }, "Enter New User"),
-        React.createElement(createUserModal_1.default, { visible: showModal }),
+        React.createElement(createUserModal_1.default, { visible: showModal, toggle: function () { return setShowModal(false); } }),
         React.createElement(userStats_1.default, null),
         contents));
 }

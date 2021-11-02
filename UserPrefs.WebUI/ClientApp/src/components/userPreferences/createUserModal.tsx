@@ -7,11 +7,13 @@ import {
 } from 'reactstrap'
 
 interface Props {
-    visible: boolean
+    visible: boolean,
+    toggle: () => void
 }
 
 export default function CreateUserModal(props: Props) {
-    return <Modal isOpen={props.visible} centered={true}>
+    return <Modal toggle={props.toggle} isOpen={props.visible} centered={true}>
+        <ModalHeader toggle={props.toggle}>Create New User</ModalHeader>
         <ModalBody>
             <CreateUserForm />
         </ModalBody>
