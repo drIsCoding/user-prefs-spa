@@ -29,6 +29,7 @@
     <None Remove="ClientApp\src\components\userEntry\userEntryContainer.tsx" />
     <None Remove="ClientApp\src\components\UserPreferences.tsx" />
     <None Remove="ClientApp\src\components\userPreferences\colorSwatch.tsx" />
+    <None Remove="ClientApp\src\components\userPreferences\SelectColorFilter.tsx" />
     <None Remove="ClientApp\src\components\userPreferences\tableFilters.jsx" />
     <None Remove="ClientApp\src\components\userPreferences\usersTable.tsx" />
     <None Remove="ClientApp\src\components\userPreferences\UserStats.tsx" />
@@ -51,6 +52,7 @@
     <TypeScriptCompile Include="ClientApp\src\components\userEntry\userEntryContainer.tsx" />
     <TypeScriptCompile Include="ClientApp\src\components\userPreferences\colorSwatch.tsx" />
     <TypeScriptCompile Include="ClientApp\src\components\userPreferences\createUserModal.tsx" />
+    <TypeScriptCompile Include="ClientApp\src\components\userPreferences\selectColorFilter.tsx" />
     <TypeScriptCompile Include="ClientApp\src\components\userPreferences\tableFilters.jsx" />
     <TypeScriptCompile Include="ClientApp\src\components\userPreferences\userPreferencesContainer.tsx" />
     <TypeScriptCompile Include="ClientApp\src\components\userPreferences\usersTable.tsx" />

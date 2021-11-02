@@ -12,7 +12,6 @@ export default function UserStats() {
     useEffect(() => {
         StatsApi.getColorsByAge().then(
             (s => {
-                console.log(s);
                 setStats(s);
                 setLoading(false);
             })

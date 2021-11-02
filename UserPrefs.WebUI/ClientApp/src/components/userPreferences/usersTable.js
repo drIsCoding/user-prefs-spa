@@ -28,6 +28,7 @@ var react_table_1 = require("react-table");
 var react_fontawesome_1 = require("@fortawesome/react-fontawesome");
 var free_solid_svg_icons_1 = require("@fortawesome/free-solid-svg-icons");
 var tableFilters_1 = require("./tableFilters");
+var selectColorFilter_1 = require("./selectColorFilter");
 var colorSwatch_1 = require("./colorSwatch");
 var colorValues_1 = require("../common/colorValues");
 function Table(_a) {
@@ -63,7 +64,7 @@ function Table(_a) {
                     " ",
                     React.createElement(colorSwatch_1.default, { hex: value }));
             },
-            Filter: tableFilters_1.SelectColumnFilter,
+            Filter: selectColorFilter_1.SelectColorFilter,
             filter: 'equals'
         },
         {
@@ -105,7 +106,6 @@ function Table(_a) {
                     })),
                     React.createElement("tr", __assign({}, restHeaderGroupProps), headerGroup.headers.map(function (column) {
                         var _a = column.getHeaderProps(), key = _a.key, restHeaderProps = __rest(_a, ["key"]);
-                        console.log(column.canFilter);
                         return (React.createElement("th", __assign({ key: key }, restHeaderProps),
                             React.createElement("div", null, column.canFilter ? column.render('Filter') : null)));
                     }))));

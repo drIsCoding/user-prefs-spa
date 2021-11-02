@@ -9,7 +9,6 @@ function UserStats() {
     var _b = react_1.useState(true), loading = _b[0], setLoading = _b[1];
     react_1.useEffect(function () {
         statsApi_1.default.getColorsByAge().then((function (s) {
-            console.log(s);
             setStats(s);
             setLoading(false);
         }));

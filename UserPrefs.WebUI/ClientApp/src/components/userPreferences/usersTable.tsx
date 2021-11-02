@@ -4,6 +4,7 @@ import { useTable, usePagination, useSortBy, useFilters } from 'react-table'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faLongArrowAltDown, faLongArrowAltUp, faExchangeAlt } from '@fortawesome/free-solid-svg-icons'
 import { TextFilter, SelectColumnFilter, NumberRangeColumnFilter } from './tableFilters'
+import {SelectColorFilter} from './selectColorFilter'
 import ColorSwatch from "./colorSwatch"
 import {ColorsDictionary} from "../common/colorValues"
 
@@ -38,7 +39,7 @@ export default function Table({ data }) {
             Cell: ({ value }) => {
                 return <div>{ColorsDictionary[value]} <ColorSwatch hex={value}/></div>
             },
-            Filter: SelectColumnFilter,
+            Filter: SelectColorFilter,
             filter: 'equals'
         },
         {
@@ -109,7 +110,6 @@ export default function Table({ data }) {
                                 <tr {...restHeaderGroupProps}>
                                     {headerGroup.headers.map(column => {
                                         const { key, ...restHeaderProps } = column.getHeaderProps()
-                                        console.log(column.canFilter);
                                         return (
                                             <th key={key} {...restHeaderProps}>
                                                 {/* Render the columns filter UI */}
