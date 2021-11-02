@@ -3,6 +3,7 @@ using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
+using System.Reflection;
 using System.Text;
 using UserPrefs.Application.Interfaces.Repositories;
 using UserPrefs.Application.Users.Models;
@@ -11,10 +12,17 @@ namespace UserPrefs.Infrastructure.Repositories
 {
     public class UsersRepository : IUsersRepository
     {
-        private const string FILE_LOCATION = @"C:\Users\Devorah Raice\Documents\GitHub\UserPrefs\AppData\userPrefs.json";
+
+        private string UserPrefsFileLocation { get; set; }
+
+        public UsersRepository()
+        {
+            var buildDir = Path.GetDirectoryName(Assembly.GetExecutingAssembly().Location);
+            UserPrefsFileLocation = buildDir + @"\AppData\userPrefs.json";
+        }
         public IEnumerable<User> GetAll()
         {
-            using StreamReader r = File.OpenText(FILE_LOCATION);
+            using StreamReader r = File.OpenText(UserPrefsFileLocation);
             string json = r.ReadToEnd();
             IEnumerable<User> items = JsonConvert.DeserializeObject<IEnumerable<User>>(json);
             return items;
@@ -41,7 +49,7 @@ namespace UserPrefs.Infrastructure.Repositories
              */
 
 
-            using StreamWriter sw = new StreamWriter(FILE_LOCATION);
+            using StreamWriter sw = new StreamWriter(UserPrefsFileLocation);
             string jsonUsers = JsonConvert.SerializeObject(allUsers);
             sw.WriteLine(jsonUsers);
         }
