@@ -10,11 +10,4 @@ namespace UserPrefs.Application.Users.Models
         public string Hex { get; set; }
         public int Count { get; set; }
     }
-
-    public class AgeColorStat
-    {
-        public int MaxAge { get; set; }
-        public List<ColorStat> ColorStats{get;set;}
-
-    }
 }

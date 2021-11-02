@@ -26,16 +26,8 @@ namespace UserPrefs.WebUI.Controllers
         [HttpGet]
         public IEnumerable<User> GetAll()
         {
-            var query = new GetUsers(_usersRepo);
-            return query.GetAll();
-        }
-
-        [HttpGet]
-        [Route("stats")]
-        public IEnumerable<AgeColorStat> GetStats()
-        {
-            var query = new GetUsers(_usersRepo);
-            return query.GetStats();
+            var query = new UserQueries(_usersRepo);
+            return query.GetAllUsers();
         }
 
         [HttpPost]

@@ -21,6 +21,7 @@
   </ItemGroup>
 
   <ItemGroup>
+    <None Remove="ClientApp\src\api\statsApi.ts" />
     <None Remove="ClientApp\src\api\usersApi.ts" />
     <None Remove="ClientApp\src\components\common\colorValues.ts" />
     <None Remove="ClientApp\src\components\common\createUserForm.tsx" />
@@ -31,7 +32,7 @@
     <None Remove="ClientApp\src\components\userPreferences\tableFilters.tsx" />
     <None Remove="ClientApp\src\components\userPreferences\usersTable.tsx" />
     <None Remove="ClientApp\src\components\userPreferences\UserStats.tsx" />
-    <None Remove="ClientApp\src\types\ageColorStat.ts" />
+    <None Remove="ClientApp\src\types\ageColorInfo.ts" />
     <None Remove="ClientApp\src\types\color.ts" />
     <None Remove="ClientApp\src\types\forms.ts" />
     <None Remove="ClientApp\src\types\User.ts" />
@@ -43,6 +44,7 @@
   </ItemGroup>
 
   <ItemGroup>
+    <TypeScriptCompile Include="ClientApp\src\api\statsApi.ts" />
     <TypeScriptCompile Include="ClientApp\src\api\usersApi.ts" />
     <TypeScriptCompile Include="ClientApp\src\components\common\colorValues.ts" />
     <TypeScriptCompile Include="ClientApp\src\components\common\createUserForm.tsx" />
@@ -53,7 +55,7 @@
     <TypeScriptCompile Include="ClientApp\src\components\userPreferences\userPreferencesContainer.tsx" />
     <TypeScriptCompile Include="ClientApp\src\components\userPreferences\usersTable.tsx" />
     <TypeScriptCompile Include="ClientApp\src\components\userPreferences\userStats.tsx" />
-    <TypeScriptCompile Include="ClientApp\src\types\ageColorStat.ts" />
+    <TypeScriptCompile Include="ClientApp\src\types\ageColorInfo.ts" />
     <TypeScriptCompile Include="ClientApp\src\types\color.ts" />
     <TypeScriptCompile Include="ClientApp\src\types\forms.ts" />
     <TypeScriptCompile Include="ClientApp\src\types\user.ts" />

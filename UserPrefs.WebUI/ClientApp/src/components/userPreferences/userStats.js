@@ -2,12 +2,13 @@
 Object.defineProperty(exports, "__esModule", { value: true });
 var React = require("react");
 var react_1 = require("react");
-var usersApi_1 = require("../../api/usersApi");
+var statsApi_1 = require("../../api/statsApi");
+var colorValues_1 = require("../common/colorValues");
 function UserStats() {
     var _a = react_1.useState([]), stats = _a[0], setStats = _a[1];
     var _b = react_1.useState(true), loading = _b[0], setLoading = _b[1];
     react_1.useEffect(function () {
-        usersApi_1.default.getStats().then((function (s) {
+        statsApi_1.default.getColorsByAge().then((function (s) {
             console.log(s);
             setStats(s);
             setLoading(false);
@@ -20,10 +21,22 @@ function UserStats() {
                 React.createElement("tr", null,
                     React.createElement("th", null, "Age"),
                     React.createElement("th", null, "Most Popular Color"))),
-            React.createElement("tbody", null, stats.map(function (s) {
-                return React.createElement("tr", { key: s.maxAge },
-                    React.createElement("td", null, s.maxAge),
-                    React.createElement("td", null, s.colorStats[0]["hex"]));
+            React.createElement("tbody", null, stats.map(function (s, index) {
+                console.log(s);
+                var _a = s.ageRange, maxAge = _a.maxAge, minAge = _a.minAge;
+                var ageLabel = minAge + " - " + maxAge;
+                if (index === 0) {
+                    ageLabel = "< " + (maxAge + 1);
+                }
+                else if (index === stats.length - 1) {
+                    ageLabel = "> " + (minAge + 1);
+                }
+                else {
+                    ageLabel = minAge + " - " + maxAge;
+                }
+                return React.createElement("tr", { key: maxAge },
+                    React.createElement("td", null, ageLabel),
+                    React.createElement("td", null, colorValues_1.ColorsDictionary[s.colorStats[0]["hex"]]));
             })));
 }
 exports.default = UserStats;

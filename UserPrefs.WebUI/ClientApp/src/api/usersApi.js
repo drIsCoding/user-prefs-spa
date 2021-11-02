@@ -16,10 +16,6 @@ var UsersApi = /** @class */ (function () {
         }).then(function (response) { return response.data; })
             .catch(function (error) { return error; });
     };
-    UsersApi.getStats = function () {
-        return axios_1.default.get("api/users/stats").then(function (response) { return response.data; })
-            .catch(function (error) { return error; });
-    };
     return UsersApi;
 }());
 exports.default = UsersApi;
