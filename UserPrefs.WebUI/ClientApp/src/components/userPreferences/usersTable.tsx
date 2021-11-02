@@ -1,7 +1,8 @@
 ﻿import * as React from 'react'
 import { useMemo } from 'react'
-import { useTable, usePagination } from 'react-table'
+import { useTable, usePagination, useSortBy, useFilters } from 'react-table'
 import PreferencesApi from '../../api/preferencesApi';
+import { TextFilter, SelectColumnFilter, NumberRangeColumnFilter } from './tableFilters'
 
 
 //export function ColorSwatch({hex}) {
@@ -15,6 +16,23 @@ import PreferencesApi from '../../api/preferencesApi';
 
 //     return <div style={styleObj}></div>
 //}
+
+// Define a default UI for filtering
+function DefaultColumnFilter({
+    column: { filterValue, preFilteredRows, setFilter },
+}) {
+    const count = preFilteredRows.length
+
+    return (
+        <input
+            value={filterValue || ''}
+            onChange={e => {
+                setFilter(e.target.value || undefined) // Set undefined to remove the filter entirely
+            }}
+            placeholder={`Search ${count} records...`}
+        />
+    )
+}
 
 export default function Table({ data }) {
 
@@ -43,22 +61,30 @@ export default function Table({ data }) {
     const columns = useMemo(() => [
         {
             Header: "First Name",
-            accessor: "firstName"
+            accessor: "firstName",
+            Filter: TextFilter,
+            filter: 'includes'
         },
         {
             Header: "Last Name",
-            accessor: "lastName"
+            accessor: "lastName",
+            Filter: TextFilter,
+            filter: 'includes'
         },
         {
             Header: "Age",
-            accessor: "age"
+            accessor: "age",
+            Filter: NumberRangeColumnFilter,
+            filter: 'between'
         },
         {
             Header: "Color",
             accessor: "colorHex",
-            Cell: ({value }) => {
+            Cell: ({ value }) => {
                 return <div>{colorsDict[value]} </div>
-            }
+            },
+            Filter: SelectColumnFilter,
+            filter: 'equals'
         },
         {
             Header: "Date Added",
@@ -90,7 +116,9 @@ export default function Table({ data }) {
         columns,
         data,
         initialState: { pageIndex: 0 },
+        defaultCanFilter: true
     },
+        useSortBy,
         usePagination)
 
     // Render the UI for your table
@@ -98,13 +126,46 @@ export default function Table({ data }) {
         <>
             <table className='table table-striped' {...getTableProps()}>
                 <thead>
-                    {headerGroups.map(headerGroup => (
-                        <tr {...headerGroup.getHeaderGroupProps()}>
-                            {headerGroup.headers.map(column => (
-                                <th {...column.getHeaderProps()}>{column.render('Header')}</th>
-                            ))}
-                        </tr>
-                    ))}
+                    {headerGroups.map(headerGroup => {
+                        const { key, ...restHeaderGroupProps } = headerGroup.getHeaderGroupProps();
+                        return (
+                            <React.Fragment key={key}>
+                                <tr {...restHeaderGroupProps}>
+                                    {headerGroup.headers.map(column => {
+                                        const { key, ...restHeaderProps } = column.getHeaderProps(column.getSortByToggleProps())
+                                        return (
+                                            <th key={key} {...restHeaderProps}>
+                                                {column.render('Header')}
+                                                <span>&nbsp;
+                                                    {column.canSort ?
+                                                        (column.isSorted ?
+                                                            (column.isSortedDesc ? <i className="far fa-long-arrow-down" />
+                                                                : <i className="far fa-long-arrow-up" />)
+                                                            : <i className="far fa-sort-alt" />)
+                                                        : ""
+                                                    }
+
+                                                </span>
+                                            </th>
+                                        )
+                                    })}
+                                </tr>
+                                <tr {...restHeaderGroupProps}>
+                                    {headerGroup.headers.map(column => {
+                                        const { key, ...restHeaderProps } = column.getHeaderProps()
+                                        console.log(column.canFilter);
+                                        return (
+                                            <th key={key} {...restHeaderProps}>
+                                                {/* Render the columns filter UI */}
+                                                <div>{column.canFilter ? column.render('Filter') : null}</div>
+                                            </th>
+                                        )
+                                    })}
+                                </tr>
+                            </React.Fragment>
+                        )
+                    }
+                    )}
                 </thead>
                 <tbody {...getTableBodyProps()}>
                     {page.map((row, i) => {

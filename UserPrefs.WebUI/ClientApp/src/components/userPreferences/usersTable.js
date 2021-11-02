@@ -10,11 +10,23 @@ var __assign = (this && this.__assign) || function () {
     };
     return __assign.apply(this, arguments);
 };
+var __rest = (this && this.__rest) || function (s, e) {
+    var t = {};
+    for (var p in s) if (Object.prototype.hasOwnProperty.call(s, p) && e.indexOf(p) < 0)
+        t[p] = s[p];
+    if (s != null && typeof Object.getOwnPropertySymbols === "function")
+        for (var i = 0, p = Object.getOwnPropertySymbols(s); i < p.length; i++) {
+            if (e.indexOf(p[i]) < 0 && Object.prototype.propertyIsEnumerable.call(s, p[i]))
+                t[p[i]] = s[p[i]];
+        }
+    return t;
+};
 Object.defineProperty(exports, "__esModule", { value: true });
 var React = require("react");
 var react_1 = require("react");
 var react_table_1 = require("react-table");
 var preferencesApi_1 = require("../../api/preferencesApi");
+var tableFilters_1 = require("./tableFilters");
 //export function ColorSwatch({hex}) {
 //    const styleObj = {
 //        backgroundColor: { hex },
@@ -25,6 +37,14 @@ var preferencesApi_1 = require("../../api/preferencesApi");
 //    }
 //     return <div style={styleObj}></div>
 //}
+// Define a default UI for filtering
+function DefaultColumnFilter(_a) {
+    var _b = _a.column, filterValue = _b.filterValue, preFilteredRows = _b.preFilteredRows, setFilter = _b.setFilter;
+    var count = preFilteredRows.length;
+    return (React.createElement("input", { value: filterValue || '', onChange: function (e) {
+            setFilter(e.target.value || undefined); // Set undefined to remove the filter entirely
+        }, placeholder: "Search " + count + " records..." }));
+}
 function Table(_a) {
     var data = _a.data;
     //for fast color name lookup
@@ -43,15 +63,21 @@ function Table(_a) {
     var columns = react_1.useMemo(function () { return [
         {
             Header: "First Name",
-            accessor: "firstName"
+            accessor: "firstName",
+            Filter: tableFilters_1.TextFilter,
+            filter: 'includes'
         },
         {
             Header: "Last Name",
-            accessor: "lastName"
+            accessor: "lastName",
+            Filter: tableFilters_1.TextFilter,
+            filter: 'includes'
         },
         {
             Header: "Age",
-            accessor: "age"
+            accessor: "age",
+            Filter: tableFilters_1.NumberRangeColumnFilter,
+            filter: 'between'
         },
         {
             Header: "Color",
@@ -61,7 +87,9 @@ function Table(_a) {
                 return React.createElement("div", null,
                     colorsDict[value],
                     " ");
-            }
+            },
+            Filter: tableFilters_1.SelectColumnFilter,
+            filter: 'equals'
         },
         {
             Header: "Date Added",
@@ -79,11 +107,34 @@ function Table(_a) {
         columns: columns,
         data: data,
         initialState: { pageIndex: 0 },
-    }, react_table_1.usePagination), getTableProps = _c.getTableProps, getTableBodyProps = _c.getTableBodyProps, headerGroups = _c.headerGroups, prepareRow = _c.prepareRow, page = _c.page, canPreviousPage = _c.canPreviousPage, canNextPage = _c.canNextPage, pageOptions = _c.pageOptions, pageCount = _c.pageCount, gotoPage = _c.gotoPage, nextPage = _c.nextPage, previousPage = _c.previousPage, setPageSize = _c.setPageSize, _d = _c.state, pageIndex = _d.pageIndex, pageSize = _d.pageSize;
+        defaultCanFilter: true
+    }, react_table_1.useSortBy, react_table_1.usePagination), getTableProps = _c.getTableProps, getTableBodyProps = _c.getTableBodyProps, headerGroups = _c.headerGroups, prepareRow = _c.prepareRow, page = _c.page, canPreviousPage = _c.canPreviousPage, canNextPage = _c.canNextPage, pageOptions = _c.pageOptions, pageCount = _c.pageCount, gotoPage = _c.gotoPage, nextPage = _c.nextPage, previousPage = _c.previousPage, setPageSize = _c.setPageSize, _d = _c.state, pageIndex = _d.pageIndex, pageSize = _d.pageSize;
     // Render the UI for your table
     return (React.createElement(React.Fragment, null,
         React.createElement("table", __assign({ className: 'table table-striped' }, getTableProps()),
-            React.createElement("thead", null, headerGroups.map(function (headerGroup) { return (React.createElement("tr", __assign({}, headerGroup.getHeaderGroupProps()), headerGroup.headers.map(function (column) { return (React.createElement("th", __assign({}, column.getHeaderProps()), column.render('Header'))); }))); })),
+            React.createElement("thead", null, headerGroups.map(function (headerGroup) {
+                var _a = headerGroup.getHeaderGroupProps(), key = _a.key, restHeaderGroupProps = __rest(_a, ["key"]);
+                return (React.createElement(React.Fragment, { key: key },
+                    React.createElement("tr", __assign({}, restHeaderGroupProps), headerGroup.headers.map(function (column) {
+                        var _a = column.getHeaderProps(column.getSortByToggleProps()), key = _a.key, restHeaderProps = __rest(_a, ["key"]);
+                        return (React.createElement("th", __assign({ key: key }, restHeaderProps),
+                            column.render('Header'),
+                            React.createElement("span", null,
+                                "\u00A0",
+                                column.canSort ?
+                                    (column.isSorted ?
+                                        (column.isSortedDesc ? React.createElement("i", { className: "far fa-long-arrow-down" })
+                                            : React.createElement("i", { className: "far fa-long-arrow-up" }))
+                                        : React.createElement("i", { className: "far fa-sort-alt" }))
+                                    : "")));
+                    })),
+                    React.createElement("tr", __assign({}, restHeaderGroupProps), headerGroup.headers.map(function (column) {
+                        var _a = column.getHeaderProps(), key = _a.key, restHeaderProps = __rest(_a, ["key"]);
+                        console.log(column.canFilter);
+                        return (React.createElement("th", __assign({ key: key }, restHeaderProps),
+                            React.createElement("div", null, column.canFilter ? column.render('Filter') : null)));
+                    }))));
+            })),
             React.createElement("tbody", __assign({}, getTableBodyProps()), page.map(function (row, i) {
                 prepareRow(row);
                 return (React.createElement("tr", __assign({}, row.getRowProps()), row.cells.map(function (cell) {
