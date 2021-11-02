@@ -2,8 +2,6 @@ import React, { Component } from 'react';
 import { Route } from 'react-router';
 import { Layout } from './components/Layout';
 import { Home } from './components/Home';
-import { FetchData } from './components/FetchData';
-import { Counter } from './components/Counter';
 import UserPreferencesContainer from './components/userPreferences/userPreferencesContainer'
 
 import './custom.css'
@@ -17,11 +15,9 @@ export default class App extends Component {
     render() {
         return (
             <Layout>
-                <Route exact path='/' component={Home} />
-                <Route path='/counter' component={Counter} />
-                <Route path='/fetch-data' component={FetchData} />
-                <Route path='/user-preferences' component={UserPreferencesContainer} />
-                <Route path='/user-entry' component={UserEntryContainer} />
+                <Route exact path='/' component={Home} title="Home" />
+                <Route path='/user-preferences' component={UserPreferencesContainer} title="User Preferences"  />
+                <Route path='/user-entry' component={UserEntryContainer} title="User Entry"   />
             </Layout>
         );
     }
