@@ -25,6 +25,8 @@ Object.defineProperty(exports, "__esModule", { value: true });
 var React = require("react");
 var react_1 = require("react");
 var react_table_1 = require("react-table");
+var react_fontawesome_1 = require("@fortawesome/react-fontawesome");
+var free_solid_svg_icons_1 = require("@fortawesome/free-solid-svg-icons");
 var preferencesApi_1 = require("../../api/preferencesApi");
 var tableFilters_1 = require("./tableFilters");
 var colorSwatch_1 = require("./colorSwatch");
@@ -107,9 +109,9 @@ function Table(_a) {
                                 "\u00A0",
                                 column.canSort ?
                                     (column.isSorted ?
-                                        (column.isSortedDesc ? React.createElement("i", { className: "far fa-long-arrow-down" })
-                                            : React.createElement("i", { className: "far fa-long-arrow-up" }))
-                                        : React.createElement("i", { className: "far fa-sort-alt" }))
+                                        (column.isSortedDesc ? React.createElement(react_fontawesome_1.FontAwesomeIcon, { icon: free_solid_svg_icons_1.faLongArrowAltDown })
+                                            : React.createElement(react_fontawesome_1.FontAwesomeIcon, { icon: free_solid_svg_icons_1.faLongArrowAltUp }))
+                                        : React.createElement(react_fontawesome_1.FontAwesomeIcon, { icon: free_solid_svg_icons_1.faExchangeAlt, rotation: 90 }))
                                     : "")));
                     })),
                     React.createElement("tr", __assign({}, restHeaderGroupProps), headerGroup.headers.map(function (column) {

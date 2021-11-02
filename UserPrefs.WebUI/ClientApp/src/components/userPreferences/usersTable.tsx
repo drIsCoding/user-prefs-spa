@@ -1,6 +1,8 @@
 ﻿import * as React from 'react'
 import { useMemo } from 'react'
 import { useTable, usePagination, useSortBy, useFilters } from 'react-table'
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
+import { faLongArrowAltDown, faLongArrowAltUp, faExchangeAlt } from '@fortawesome/free-solid-svg-icons'
 import PreferencesApi from '../../api/preferencesApi';
 import { TextFilter, SelectColumnFilter, NumberRangeColumnFilter } from './tableFilters'
 import ColorSwatch from "./colorSwatch"
@@ -111,9 +113,9 @@ export default function Table({ data }) {
                                                 <span>&nbsp;
                                                     {column.canSort ?
                                                         (column.isSorted ?
-                                                            (column.isSortedDesc ? <i className="far fa-long-arrow-down" />
-                                                                : <i className="far fa-long-arrow-up" />)
-                                                            : <i className="far fa-sort-alt" />)
+                                                            (column.isSortedDesc ? <FontAwesomeIcon icon={faLongArrowAltDown}/>
+                                                                : <FontAwesomeIcon icon={faLongArrowAltUp} />)
+                                                            : <FontAwesomeIcon icon={faExchangeAlt} rotation={90} />)
                                                         : ""
                                                     }
 
