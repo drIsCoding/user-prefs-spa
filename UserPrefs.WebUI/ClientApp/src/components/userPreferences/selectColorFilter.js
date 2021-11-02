@@ -6,7 +6,7 @@ var colorValues_1 = require("../common/colorValues");
 function SelectColorFilter(_a) {
     var _b = _a.column, filterValue = _b.filterValue, setFilter = _b.setFilter;
     // Render a multi-select box
-    return (React.createElement("select", { value: filterValue, onChange: function (e) {
+    return (React.createElement("select", { className: "form-control", value: filterValue, onChange: function (e) {
             setFilter(e.target.value || undefined);
         } },
         React.createElement("option", { value: "" }, "All"),

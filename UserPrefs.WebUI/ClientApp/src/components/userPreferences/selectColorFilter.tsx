@@ -7,7 +7,7 @@ export function SelectColorFilter({
 
     // Render a multi-select box
     return (
-        <select
+        <select className="form-control"
             value={filterValue}
             onChange={e => {
                 setFilter(e.target.value || undefined)

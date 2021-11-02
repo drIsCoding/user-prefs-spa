@@ -60,9 +60,9 @@ function Table(_a) {
             Cell: function (_a) {
                 var value = _a.value;
                 return React.createElement("div", null,
-                    colorValues_1.ColorsDictionary[value],
+                    React.createElement(colorSwatch_1.default, { hex: value }),
                     " ",
-                    React.createElement(colorSwatch_1.default, { hex: value }));
+                    colorValues_1.ColorsDictionary[value]);
             },
             Filter: selectColorFilter_1.SelectColorFilter,
             filter: 'equals'
@@ -85,9 +85,13 @@ function Table(_a) {
         data: data,
         initialState: { pageIndex: 0 }
     }, react_table_1.useFilters, react_table_1.useSortBy, react_table_1.usePagination), getTableProps = _c.getTableProps, getTableBodyProps = _c.getTableBodyProps, headerGroups = _c.headerGroups, prepareRow = _c.prepareRow, page = _c.page, canPreviousPage = _c.canPreviousPage, canNextPage = _c.canNextPage, pageOptions = _c.pageOptions, pageCount = _c.pageCount, gotoPage = _c.gotoPage, nextPage = _c.nextPage, previousPage = _c.previousPage, setPageSize = _c.setPageSize, _d = _c.state, pageIndex = _d.pageIndex, pageSize = _d.pageSize;
+    var paginationSelectOptions = [];
+    for (var pageNum = 0; pageNum < pageCount; pageNum++) {
+        paginationSelectOptions.push(React.createElement("option", { key: pageNum, value: pageNum }, pageNum + 1));
+    }
     // Render the UI for your table
     return (React.createElement(React.Fragment, null,
-        React.createElement("table", __assign({ className: 'table table-striped' }, getTableProps()),
+        React.createElement("table", __assign({ className: 'table table-striped table-bordered' }, getTableProps()),
             React.createElement("thead", null, headerGroups.map(function (headerGroup) {
                 var _a = headerGroup.getHeaderGroupProps(), key = _a.key, restHeaderGroupProps = __rest(_a, ["key"]);
                 return (React.createElement(React.Fragment, { key: key },
@@ -116,36 +120,17 @@ function Table(_a) {
                     return React.createElement("td", __assign({}, cell.getCellProps()), cell.render('Cell'));
                 })));
             }))),
-        React.createElement("div", { className: "pagination" },
-            React.createElement("button", { onClick: function () { return gotoPage(0); }, disabled: !canPreviousPage }, '<<'),
-            ' ',
-            React.createElement("button", { onClick: function () { return previousPage(); }, disabled: !canPreviousPage }, '<'),
-            ' ',
-            React.createElement("button", { onClick: function () { return nextPage(); }, disabled: !canNextPage }, '>'),
-            ' ',
-            React.createElement("button", { onClick: function () { return gotoPage(pageCount - 1); }, disabled: !canNextPage }, '>>'),
-            ' ',
-            React.createElement("span", null,
-                "Page",
-                ' ',
-                React.createElement("strong", null,
-                    pageIndex + 1,
-                    " of ",
-                    pageOptions.length),
-                ' '),
-            React.createElement("span", null,
-                "| Go to page:",
-                ' ',
-                React.createElement("input", { type: "number", defaultValue: pageIndex + 1, onChange: function (e) {
-                        var page = e.target.value ? Number(e.target.value) - 1 : 0;
-                        gotoPage(page);
-                    }, style: { width: '100px' } })),
-            ' ',
-            React.createElement("select", { value: pageSize, onChange: function (e) {
-                    setPageSize(Number(e.target.value));
-                } }, [10, 20, 30, 40, 50].map(function (pageSize) { return (React.createElement("option", { key: pageSize, value: pageSize },
-                "Show ",
-                pageSize)); })))));
+        React.createElement("ul", { className: "pagination" },
+            React.createElement("li", { className: "page-item" },
+                React.createElement("button", { className: "page-link", onClick: function () { return gotoPage(0); }, disabled: !canPreviousPage }, "First")),
+            React.createElement("li", { className: "page-item" },
+                React.createElement("button", { className: "page-link", onClick: function () { return previousPage(); }, disabled: !canPreviousPage }, "Previous")),
+            React.createElement("li", { className: "page-item" },
+                React.createElement("select", { className: "form-control", onChange: function (e) { return gotoPage(e.target.value); } }, paginationSelectOptions)),
+            React.createElement("li", { className: "page-item" },
+                React.createElement("button", { className: "page-link", onClick: function () { return nextPage(); }, disabled: !canNextPage }, "Next")),
+            React.createElement("li", { className: "page-item" },
+                React.createElement("button", { className: "page-link", onClick: function () { return gotoPage(pageCount - 1); }, disabled: !canNextPage }, "Last")))));
 }
 exports.default = Table;
 //# sourceMappingURL=usersTable.js.map

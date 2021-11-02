@@ -36,11 +36,15 @@ export default function CreateUserForm() {
     }
 
     const handleSelectColorChange = (e: React.ChangeEvent<HTMLSelectElement>) => {
+        console.log(e.target.value);
         setChosenColor(e.target.value);
     }
 
     return (
         <form onSubmit={handleSubmit(onSubmit)}>
+            <div className="alert alert-success" role="alert">
+                User successfully created!
+            </div>
             <div className="form-group">
                 <label>First Name</label>
                 <input className={`form-control ${errors.firstName ? 'is-invalid' : ''}`}
@@ -69,7 +73,7 @@ export default function CreateUserForm() {
                     <select className={`mb-2 form-control ${errors.colorHex ? 'is-invalid' : ''}`}
                         name="colorHex"
                         value={chosenColor}
-                        onChange={handleSelectColorChange}
+                        onChange={(e) => { console.log(e); setChosenColor(e.target.value) }}
                         {...register("colorHex", { required: true })}>
                         <option value="">None</option>
                         {ColorsArray.map((color, i) => (
@@ -80,7 +84,7 @@ export default function CreateUserForm() {
                     </select>
                     {errors.colorHex && <div className="invalid-feedback">You must choose a color.</div>}
 
-                    <CirclePicker width="210px" onChange={handlePickerColorChange}
+                    <CirclePicker width="210px" onChange={(color) => setChosenColor(color.hex)}
                         color={chosenColor}
                         colors={HexArray} />
                 </div>

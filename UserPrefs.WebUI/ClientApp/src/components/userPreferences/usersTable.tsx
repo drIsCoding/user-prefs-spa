@@ -37,7 +37,7 @@ export default function Table({ data }) {
             Header: "Color",
             accessor: "colorHex",
             Cell: ({ value }) => {
-                return <div>{ColorsDictionary[value]} <ColorSwatch hex={value}/></div>
+                return <div><ColorSwatch hex={value} /> {ColorsDictionary[value]}</div>
             },
             Filter: SelectColorFilter,
             filter: 'equals'
@@ -78,10 +78,15 @@ export default function Table({ data }) {
         useSortBy,
         usePagination)
 
+    const paginationSelectOptions = [];
+    for (let pageNum = 0; pageNum < pageCount; pageNum++) {
+        paginationSelectOptions.push(<option key={pageNum} value={pageNum}>{pageNum + 1}</option>);
+    }
+
     // Render the UI for your table
     return (
         <>
-            <table className='table table-striped' {...getTableProps()}>
+            <table className='table table-striped table-bordered' {...getTableProps()}>
                 <thead>
                     {headerGroups.map(headerGroup => {
                         const { key, ...restHeaderGroupProps } = headerGroup.getHeaderGroupProps();
@@ -136,50 +141,35 @@ export default function Table({ data }) {
                     })}
                 </tbody>
             </table>
-            <div className="pagination">
-                <button onClick={() => gotoPage(0)} disabled={!canPreviousPage}>
-                    {'<<'}
-                </button>{' '}
-                <button onClick={() => previousPage()} disabled={!canPreviousPage}>
-                    {'<'}
-                </button>{' '}
-                <button onClick={() => nextPage()} disabled={!canNextPage}>
-                    {'>'}
-                </button>{' '}
-                <button onClick={() => gotoPage(pageCount - 1)} disabled={!canNextPage}>
-                    {'>>'}
-                </button>{' '}
-                <span>
-                    Page{' '}
-                    <strong>
-                        {pageIndex + 1} of {pageOptions.length}
-                    </strong>{' '}
-                </span>
-                <span>
-                    | Go to page:{' '}
-                    <input
-                        type="number"
-                        defaultValue={pageIndex + 1}
-                        onChange={e => {
-                            const page = e.target.value ? Number(e.target.value) - 1 : 0
-                            gotoPage(page)
-                        }}
-                        style={{ width: '100px' }}
-                    />
-                </span>{' '}
-                <select
-                    value={pageSize}
-                    onChange={e => {
-                        setPageSize(Number(e.target.value))
-                    }}
-                >
-                    {[10, 20, 30, 40, 50].map(pageSize => (
-                        <option key={pageSize} value={pageSize}>
-                            Show {pageSize}
-                        </option>
-                    ))}
-                </select>
-            </div>
+            
+
+            <ul className="pagination">
+                <li className="page-item">
+                    <button className="page-link" onClick={() => gotoPage(0)} disabled={!canPreviousPage}>
+                        First
+                    </button>
+                </li>
+                <li className="page-item">
+                    <button className="page-link" onClick={() => previousPage()} disabled={!canPreviousPage}>
+                        Previous
+                    </button>
+                </li>
+                <li className="page-item">
+                    <select className="form-control" onChange={(e) => gotoPage(e.target.value)}>
+                        {paginationSelectOptions}
+                    </select>
+                </li>
+                <li className="page-item">
+                    <button className="page-link" onClick={() => nextPage()} disabled={!canNextPage}>
+                        Next
+                    </button>
+                </li>
+                <li className="page-item">
+                    <button className="page-link" onClick={() => gotoPage(pageCount - 1)} disabled={!canNextPage}>
+                        Last
+                    </button>
+                </li>
+            </ul>
         </>
     )
 }

@@ -37,9 +37,11 @@ function CreateUserForm() {
         setChosenColor(color.hex);
     };
     var handleSelectColorChange = function (e) {
+        console.log(e.target.value);
         setChosenColor(e.target.value);
     };
     return (React.createElement("form", { onSubmit: handleSubmit(onSubmit) },
+        React.createElement("div", { className: "alert alert-success", role: "alert" }, "User successfully created!"),
         React.createElement("div", { className: "form-group" },
             React.createElement("label", null, "First Name"),
             React.createElement("input", __assign({ className: "form-control " + (errors.firstName ? 'is-invalid' : ''), id: "firstName", name: "firstName" }, register("firstName", { required: true }))),
@@ -56,11 +58,11 @@ function CreateUserForm() {
                     errors.age && React.createElement("div", { className: "invalid-feedback" }, "Age is required."))),
             React.createElement("div", { className: "col-sm" },
                 React.createElement("label", null, "Choose color preference"),
-                React.createElement("select", __assign({ className: "mb-2 form-control " + (errors.colorHex ? 'is-invalid' : ''), name: "colorHex", value: chosenColor, onChange: handleSelectColorChange }, register("colorHex", { required: true })),
+                React.createElement("select", __assign({ className: "mb-2 form-control " + (errors.colorHex ? 'is-invalid' : ''), name: "colorHex", value: chosenColor, onChange: function (e) { console.log(e); setChosenColor(e.target.value); } }, register("colorHex", { required: true })),
                     React.createElement("option", { value: "" }, "None"),
                     colorValues_1.ColorsArray.map(function (color, i) { return (React.createElement("option", { key: color.hex, value: color.hex }, color.name)); })),
                 errors.colorHex && React.createElement("div", { className: "invalid-feedback" }, "You must choose a color."),
-                React.createElement(react_color_1.CirclePicker, { width: "210px", onChange: handlePickerColorChange, color: chosenColor, colors: colorValues_1.HexArray }))),
+                React.createElement(react_color_1.CirclePicker, { width: "210px", onChange: function (color) { return setChosenColor(color.hex); }, color: chosenColor, colors: colorValues_1.HexArray }))),
         React.createElement("button", { className: "btn btn-primary", type: "submit" }, "Submit")));
 }
 exports.default = CreateUserForm;

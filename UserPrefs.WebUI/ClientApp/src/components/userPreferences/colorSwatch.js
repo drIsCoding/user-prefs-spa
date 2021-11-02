@@ -4,11 +4,13 @@ var React = require("react");
 function ColorSwatch(props) {
     var styleObj = {
         backgroundColor: props.hex,
-        width: "30px",
-        height: "30px",
+        width: "20px",
+        height: "20px",
         outline: "none",
         borderRadius: "4px",
-        display: "inline-block"
+        display: "inline-block",
+        verticalAlign: "text-bottom",
+        marginRight: "5px"
     };
     return React.createElement("div", { style: styleObj });
 }

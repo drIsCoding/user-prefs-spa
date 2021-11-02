@@ -8,7 +8,7 @@ export function TextFilter({
     const count = preFilteredRows.length
 
     return (
-        <input
+        <input className="form-control"
             value={filterValue || ''}
             onChange={e => {
                 setFilter(e.target.value || undefined) // Set undefined to remove the filter entirely
@@ -36,7 +36,7 @@ export function SelectColumnFilter({
 
     // Render a multi-select box
     return (
-        <select
+        <select className="form-control"
             value={filterValue}
             onChange={e => {
                 setFilter(e.target.value || undefined)
@@ -74,7 +74,7 @@ export function NumberRangeColumnFilter({
                 display: 'flex',
             }}
         >
-            <input
+            <input className="form-control"
                 value={filterValue[0] || ''}
                 type="number"
                 onChange={e => {
@@ -88,7 +88,7 @@ export function NumberRangeColumnFilter({
                 }}
             />
             to
-            <input
+            <input className="form-control"
                 value={filterValue[1] || ''}
                 type="number"
                 onChange={e => {
