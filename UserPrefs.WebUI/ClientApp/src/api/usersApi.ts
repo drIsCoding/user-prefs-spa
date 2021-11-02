@@ -1,6 +1,6 @@
 ﻿import axios from 'axios'
 import { CreateUserForm } from '../types/forms';
-import { User } from '../types/User'
+import { User } from '../types/user'
 
 
 export default class UsersApi {

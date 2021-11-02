@@ -1,6 +1,6 @@
 ﻿import * as React from 'react'
 import { useEffect, useState } from "react"
-import { User } from '../../types/User'
+import { User } from '../../types/user'
 import UsersApi from '../../api/usersApi'
 import { Button } from 'reactstrap'
 import CreateUserModal from './createUserModal'
