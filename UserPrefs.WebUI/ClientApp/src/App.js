@@ -7,6 +7,7 @@ import { Counter } from './components/Counter';
 import UserPreferencesContainer from './components/userPreferences/userPreferencesContainer'
 
 import './custom.css'
+import UserEntryContainer from './components/userEntry/userEntryContainer';
 
 export default class App extends Component {
     static displayName = App.name;
@@ -18,6 +19,7 @@ export default class App extends Component {
                 <Route path='/counter' component={Counter} />
                 <Route path='/fetch-data' component={FetchData} />
                 <Route path='/user-preferences' component={UserPreferencesContainer} />
+                <Route path='/user-entry' component={UserEntryContainer} />
             </Layout>
         );
     }

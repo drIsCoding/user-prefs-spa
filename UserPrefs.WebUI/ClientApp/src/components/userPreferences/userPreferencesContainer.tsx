@@ -5,38 +5,13 @@ import UsersApi from '../../api/usersApi'
 import { Button } from 'reactstrap'
 import CreateUserModal from './createUserModal'
 import Table from './usersTable'
+import UserStats from './userStats'
 
 
 export default function UserPreferencesContainer() {
     const [loading, setLoading] = useState(true);
     const [userData, setUserData] = useState<User[]>();
     const [showModal, setShowModal] = useState(false);
-
-
-    const renderUserData = (userData: User[]) => {
-        return (
-            <table className='table table-striped' aria-labelledby="tabelLabel">
-                <thead>
-                    <tr>
-                        <th>First Name</th>
-                        <th>Last Name</th>
-                        <th>Age</th>
-                        <th>Color ID</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    {userData.map(u =>
-                        <tr key={u.id}>
-                            <td>{u.firstName}</td>
-                            <td>{u.lastName}</td>
-                            <td>{u.age}</td>
-                            <td>{u.colorHex}</td>
-                        </tr>
-                    )}
-                </tbody>
-            </table>
-        );
-    }
 
 
     useEffect(() => {
@@ -58,7 +33,7 @@ export default function UserPreferencesContainer() {
             <p>This component is getting user prefs data</p>
             <Button onClick={() => setShowModal(true)}>Enter New User</Button>
             <CreateUserModal visible={showModal}/>
-
+            <UserStats/>
             {contents}
         </div>
      )

@@ -56,9 +56,15 @@ export default function Table({ data }) {
         {
             Header: "Color",
             accessor: "colorHex",
-            Cell: ({ row, cell }) => {
-                console.log(row.original.colorHex, colorsDict);
-                return <div>{colorsDict[row.original.colorHex]} </div>
+            Cell: ({value }) => {
+                return <div>{colorsDict[value]} </div>
+            }
+        },
+        {
+            Header: "Date Added",
+            accessor: "dateAdded",
+            Cell: ({ value }) => {
+                return <span>{new Date(value).toLocaleDateString()} </span>
             }
         }
     ], [colorsDict])

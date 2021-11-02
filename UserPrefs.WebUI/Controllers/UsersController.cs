@@ -31,7 +31,8 @@ namespace UserPrefs.WebUI.Controllers
         }
 
         [HttpGet]
-        public Dictionary<int, Dictionary<string, int>> GetStats()
+        [Route("stats")]
+        public IEnumerable<AgeColorStat> GetStats()
         {
             var query = new GetUsers(_usersRepo);
             return query.GetStats();

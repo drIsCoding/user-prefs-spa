@@ -3,5 +3,6 @@
     firstName: string,
     lastName: string,
     age: number,
-    colorHex: string
+    colorHex: string,
+    dateAdded: Date
 }

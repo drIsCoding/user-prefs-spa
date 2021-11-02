@@ -12,5 +12,6 @@ namespace UserPrefs.Application.Users.Models
         public string LastName { get; set; }
         public int Age { get; set; }
         public string ColorHex  { get; set; }
+        public DateTime DateAdded { get; set; }
     }
 }

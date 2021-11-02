@@ -57,10 +57,19 @@ function Table(_a) {
             Header: "Color",
             accessor: "colorHex",
             Cell: function (_a) {
-                var row = _a.row, cell = _a.cell;
-                console.log(row.original.colorHex, colorsDict);
+                var value = _a.value;
                 return React.createElement("div", null,
-                    colorsDict[row.original.colorHex],
+                    colorsDict[value],
+                    " ");
+            }
+        },
+        {
+            Header: "Date Added",
+            accessor: "dateAdded",
+            Cell: function (_a) {
+                var value = _a.value;
+                return React.createElement("span", null,
+                    new Date(value).toLocaleDateString(),
                     " ");
             }
         }

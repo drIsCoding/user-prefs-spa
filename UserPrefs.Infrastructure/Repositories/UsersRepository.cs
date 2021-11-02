@@ -11,9 +11,10 @@ namespace UserPrefs.Infrastructure.Repositories
 {
     public class UsersRepository : IUsersRepository
     {
+        private const string FILE_LOCATION = @"C:\Users\Devorah Raice\Documents\GitHub\UserPrefs\AppData\userPrefs.json";
         public IEnumerable<User> GetAll()
         {
-            using StreamReader r = File.OpenText(@"C:\Users\Devorah Raice\Documents\GitHub\UserPrefs\AppData\userPrefs.json");
+            using StreamReader r = File.OpenText(FILE_LOCATION);
             string json = r.ReadToEnd();
             IEnumerable<User> items = JsonConvert.DeserializeObject<IEnumerable<User>>(json);
             return items;
@@ -21,7 +22,12 @@ namespace UserPrefs.Infrastructure.Repositories
 
         public void CreateUser(User user)
         {
-            using StreamWriter sw = new StreamWriter(@"C:\Users\Devorah Raice\Documents\GitHub\UserPrefs\AppData\createdUsers.json");
+            //get numRows + 1 for ID
+            int lineCount = File.ReadLines(FILE_LOCATION).Count();
+
+            user.ID = lineCount + 1;
+            user.DateAdded = DateTime.Now;
+            using StreamWriter sw = new StreamWriter(FILE_LOCATION);
             string jsonUser = JsonConvert.SerializeObject(user);
             sw.WriteLine(jsonUser);
         }
