@@ -1,10 +1,10 @@
 ﻿import * as React from "react";
 import { useEffect, useState } from "react";
-import { useForm } from "react-hook-form";
+import { useForm, Controller } from "react-hook-form";
 import { CirclePicker } from 'react-color'
 import UsersApi from "../../api/usersApi";
 import { CreateUserForm } from "../../types/forms";
-import { ColorsDictionary, HexArray} from "./colorValues"
+import { ColorsDictionary, HexArray, ColorsArray } from "./colorValues"
 
 interface FormData {
     firstName: string,
@@ -14,13 +14,9 @@ interface FormData {
     displayColor: string
 };
 export default function CreateUserForm() {
-    const { register, setValue, handleSubmit, formState: { errors } } = useForm<FormData>();
+    const { register, control, setValue, handleSubmit, formState: { errors } } = useForm<FormData>();
     const [chosenColor, setChosenColor] = useState("");
-    const [chosenDisplayColor, setChosenDisplayColor] = useState("");
-    const [hexValues, setHexValues] = useState<string[]>([]);
 
-    //for fast color name lookup
-    const [colorsDict, setColorsDict] = useState({});
 
     const onSubmit = (data: FormData, event) => {
         console.log("submitting form!");
@@ -35,10 +31,12 @@ export default function CreateUserForm() {
         UsersApi.createUser(userForm);
     };
 
-    const handleColorChange = (color, event) => {
-        console.log(color, event);
+    const handlePickerColorChange = (color) => {
         setChosenColor(color.hex);
-        setChosenDisplayColor(ColorsDictionary[color.hex]);
+    }
+
+    const handleSelectColorChange = (e: React.ChangeEvent<HTMLSelectElement>) => {
+        setChosenColor(e.target.value);
     }
 
     return (
@@ -68,13 +66,22 @@ export default function CreateUserForm() {
                 </div>
                 <div className="col-sm">
                     <label>Choose color preference</label>
-                    <span>Chosen color:</span>
-                    <input type="text" readOnly className="form-control-plaintext"
-                        id="displayColor" name="displayColor" value={chosenDisplayColor}
-                    />
-                    <input type="hidden" name="colorHex" value={chosenColor} {...register("colorHex")} />
+                    <select className={`mb-2 form-control ${errors.colorHex ? 'is-invalid' : ''}`}
+                        name="colorHex"
+                        value={chosenColor}
+                        onChange={handleSelectColorChange}
+                        {...register("colorHex", { required: true })}>
+                        <option value="">None</option>
+                        {ColorsArray.map((color, i) => (
+                            <option key={color.hex} value={color.hex}>
+                                {color.name}
+                            </option>
+                        ))}
+                    </select>
+                    {errors.colorHex && <div className="invalid-feedback">You must choose a color.</div>}
 
-                    <CirclePicker width="210px" onChange={handleColorChange}
+                    <CirclePicker width="210px" onChange={handlePickerColorChange}
+                        color={chosenColor}
                         colors={HexArray} />
                 </div>
             </div>

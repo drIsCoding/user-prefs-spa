@@ -21,7 +21,6 @@ function UserStats() {
                     React.createElement("th", null, "Age"),
                     React.createElement("th", null, "Most Popular Color"))),
             React.createElement("tbody", null, stats.map(function (s, index) {
-                console.log(s);
                 var _a = s.ageRange, maxAge = _a.maxAge, minAge = _a.minAge;
                 var ageLabel = minAge + " - " + maxAge;
                 if (index === 0) {

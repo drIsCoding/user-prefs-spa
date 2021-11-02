@@ -19,12 +19,8 @@ var usersApi_1 = require("../../api/usersApi");
 var colorValues_1 = require("./colorValues");
 ;
 function CreateUserForm() {
-    var _a = react_hook_form_1.useForm(), register = _a.register, setValue = _a.setValue, handleSubmit = _a.handleSubmit, errors = _a.formState.errors;
+    var _a = react_hook_form_1.useForm(), register = _a.register, control = _a.control, setValue = _a.setValue, handleSubmit = _a.handleSubmit, errors = _a.formState.errors;
     var _b = react_1.useState(""), chosenColor = _b[0], setChosenColor = _b[1];
-    var _c = react_1.useState(""), chosenDisplayColor = _c[0], setChosenDisplayColor = _c[1];
-    var _d = react_1.useState([]), hexValues = _d[0], setHexValues = _d[1];
-    //for fast color name lookup
-    var _e = react_1.useState({}), colorsDict = _e[0], setColorsDict = _e[1];
     var onSubmit = function (data, event) {
         console.log("submitting form!");
         console.log(data);
@@ -37,10 +33,11 @@ function CreateUserForm() {
         };
         usersApi_1.default.createUser(userForm);
     };
-    var handleColorChange = function (color, event) {
-        console.log(color, event);
+    var handlePickerColorChange = function (color) {
         setChosenColor(color.hex);
-        setChosenDisplayColor(colorValues_1.ColorsDictionary[color.hex]);
+    };
+    var handleSelectColorChange = function (e) {
+        setChosenColor(e.target.value);
     };
     return (React.createElement("form", { onSubmit: handleSubmit(onSubmit) },
         React.createElement("div", { className: "form-group" },
@@ -59,10 +56,11 @@ function CreateUserForm() {
                     errors.age && React.createElement("div", { className: "invalid-feedback" }, "Age is required."))),
             React.createElement("div", { className: "col-sm" },
                 React.createElement("label", null, "Choose color preference"),
-                React.createElement("span", null, "Chosen color:"),
-                React.createElement("input", { type: "text", readOnly: true, className: "form-control-plaintext", id: "displayColor", name: "displayColor", value: chosenDisplayColor }),
-                React.createElement("input", __assign({ type: "hidden", name: "colorHex", value: chosenColor }, register("colorHex"))),
-                React.createElement(react_color_1.CirclePicker, { width: "210px", onChange: handleColorChange, colors: colorValues_1.HexArray }))),
+                React.createElement("select", __assign({ className: "mb-2 form-control " + (errors.colorHex ? 'is-invalid' : ''), name: "colorHex", value: chosenColor, onChange: handleSelectColorChange }, register("colorHex", { required: true })),
+                    React.createElement("option", { value: "" }, "None"),
+                    colorValues_1.ColorsArray.map(function (color, i) { return (React.createElement("option", { key: color.hex, value: color.hex }, color.name)); })),
+                errors.colorHex && React.createElement("div", { className: "invalid-feedback" }, "You must choose a color."),
+                React.createElement(react_color_1.CirclePicker, { width: "210px", onChange: handlePickerColorChange, color: chosenColor, colors: colorValues_1.HexArray }))),
         React.createElement("button", { className: "btn btn-primary", type: "submit" }, "Submit")));
 }
 exports.default = CreateUserForm;

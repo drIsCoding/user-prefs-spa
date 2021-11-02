@@ -28,7 +28,6 @@ export default function UserStats() {
         </thead>
         <tbody>
                 {stats.map((s, index) => {
-                    console.log(s);
                     const { maxAge, minAge } = s.ageRange;
 
                     let ageLabel = `${minAge} - ${maxAge}`;
