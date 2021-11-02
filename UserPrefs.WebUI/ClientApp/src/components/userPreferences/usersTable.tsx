@@ -91,7 +91,8 @@ export default function Table({ data }) {
             accessor: "dateAdded",
             Cell: ({ value }) => {
                 return <span>{new Date(value).toLocaleDateString()} </span>
-            }
+            },
+            disableFilters: true
         }
     ], [colorsDict])
 
@@ -115,9 +116,9 @@ export default function Table({ data }) {
     } = useTable({
         columns,
         data,
-        initialState: { pageIndex: 0 },
-        defaultCanFilter: true
+        initialState: { pageIndex: 0 }
     },
+        useFilters,
         useSortBy,
         usePagination)
 

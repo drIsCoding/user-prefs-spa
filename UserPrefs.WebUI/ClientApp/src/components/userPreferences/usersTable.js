@@ -99,16 +99,16 @@ function Table(_a) {
                 return React.createElement("span", null,
                     new Date(value).toLocaleDateString(),
                     " ");
-            }
+            },
+            disableFilters: true
         }
     ]; }, [colorsDict]);
     // Use the state and functions returned from useTable to build your UI
     var _c = react_table_1.useTable({
         columns: columns,
         data: data,
-        initialState: { pageIndex: 0 },
-        defaultCanFilter: true
-    }, react_table_1.useSortBy, react_table_1.usePagination), getTableProps = _c.getTableProps, getTableBodyProps = _c.getTableBodyProps, headerGroups = _c.headerGroups, prepareRow = _c.prepareRow, page = _c.page, canPreviousPage = _c.canPreviousPage, canNextPage = _c.canNextPage, pageOptions = _c.pageOptions, pageCount = _c.pageCount, gotoPage = _c.gotoPage, nextPage = _c.nextPage, previousPage = _c.previousPage, setPageSize = _c.setPageSize, _d = _c.state, pageIndex = _d.pageIndex, pageSize = _d.pageSize;
+        initialState: { pageIndex: 0 }
+    }, react_table_1.useFilters, react_table_1.useSortBy, react_table_1.usePagination), getTableProps = _c.getTableProps, getTableBodyProps = _c.getTableBodyProps, headerGroups = _c.headerGroups, prepareRow = _c.prepareRow, page = _c.page, canPreviousPage = _c.canPreviousPage, canNextPage = _c.canNextPage, pageOptions = _c.pageOptions, pageCount = _c.pageCount, gotoPage = _c.gotoPage, nextPage = _c.nextPage, previousPage = _c.previousPage, setPageSize = _c.setPageSize, _d = _c.state, pageIndex = _d.pageIndex, pageSize = _d.pageSize;
     // Render the UI for your table
     return (React.createElement(React.Fragment, null,
         React.createElement("table", __assign({ className: 'table table-striped' }, getTableProps()),
