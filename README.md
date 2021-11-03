@@ -14,4 +14,4 @@ Open command prompt:
 - Allow customization of the age groupings in the stats
 - Allow users to pick a custom color
 ## Known Issues Under Investigation
-1. Users table is not immediately updating when a new user is created (requires page refresh)
+- Users table is not immediately updating when a new user is created
