@@ -7,3 +7,9 @@ Open command prompt:
 2. `dotnet build`
 3. `dotnet run --project .\UserPrefs.WebUI\UserPrefs.WebUI.csproj`
 4. Navigate in web browser to `localhost:5000`
+#Suggested Additional Features
+- Edit and Delete user functionality
+- Allow users to enter age via birthday
+- Let users search to see if they already submitted their info
+- Allow customization of the age groupings in the stats
+- Allow users to pick a custom color
