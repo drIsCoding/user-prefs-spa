@@ -56,7 +56,7 @@ export default function UserPreferencesContainer() {
 
             <CreateUserModal visible={showModal} toggle={() => setShowModal(false)} handleCreateSuccess={handleNewUserCreation}/>
             
-            {showSuccess && <Alert fade={true}>Success!</Alert>}
+            {showSuccess && <Alert fade={true}>New User Successfully Added!</Alert>}
             
             {contents}
         </div>
