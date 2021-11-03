@@ -1,5 +1,5 @@
 ﻿import * as React from 'react'
-import { useEffect, useMemo, useState } from "react"
+import { useEffect, useState } from "react"
 import { User } from '../../types/user'
 import UsersApi from '../../api/usersApi'
 import { Button } from 'reactstrap'
@@ -43,12 +43,9 @@ export default function UserPreferencesContainer() {
         setShowSuccess(true);
     }
 
-    const tableData = useMemo(() => userData, [userData]);
-
-
     let contents = loading
         ? <p><em>Loading...</em></p>
-        : <UsersTable data={tableData} />
+        : <UsersTable data={userData} />
 
     return (
         <div>

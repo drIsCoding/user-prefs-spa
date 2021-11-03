@@ -10,6 +10,8 @@ import {ColorsDictionary} from "../common/colorValues"
 
 export default function UsersTable({ data }) {
 
+    console.log("rendering user data");
+
     const columns = useMemo(() => [
         {
             Header: "First Name",
@@ -48,6 +50,8 @@ export default function UsersTable({ data }) {
         }
     ], [])
 
+    const memoData = useMemo(() => data, []);
+
     // Use the state and functions returned from useTable to build your UI
     const {
         getTableProps,
@@ -66,7 +70,7 @@ export default function UsersTable({ data }) {
         state: { pageIndex, pageSize },
     } = useTable({
         columns,
-        data,
+        data: memoData,
         initialState: { pageIndex: 0, pageSize: 15 }
     },
         useFilters,
