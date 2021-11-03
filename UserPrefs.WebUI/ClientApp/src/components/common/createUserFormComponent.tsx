@@ -54,7 +54,10 @@ export default function CreateUserFormComponent(props: Props) {
                         <label>Age</label>
                         <input type="number" min="1" max="120"
                             className={`form-control ${errors.age ? 'is-invalid' : ''}`}
-                            name="age" {...register("age", { required: true })} />
+                            name="age" {...register("age", { required: true, min: 1, max:120 })} />
+                         {errors.age && errors.age.type === "required" && <div className="invalid-feedback">Age is required.</div>}
+                        {errors.age && errors.age.type === "min" && <div className="invalid-feedback">Age must be at least 1.</div>}
+                        {errors.age && errors.age.type === "max" &&  <div className="invalid-feedback">Age must be no more than 120.</div>}
                         {errors.age && <div className="invalid-feedback">Age is required.</div>}
                     </div>
                 </div>

@@ -56,7 +56,7 @@
     <TypeScriptCompile Include="ClientApp\src\components\userPreferences\tableFilters.jsx" />
     <TypeScriptCompile Include="ClientApp\src\components\userPreferences\userPreferencesContainer.tsx" />
     <TypeScriptCompile Include="ClientApp\src\components\userPreferences\usersTable.tsx" />
-    <TypeScriptCompile Include="ClientApp\src\components\userPreferences\userStats.tsx" />
+    <TypeScriptCompile Include="ClientApp\src\components\userStats\userStatsContainer.tsx" />
     <TypeScriptCompile Include="ClientApp\src\types\ageColorInfo.ts" />
     <TypeScriptCompile Include="ClientApp\src\types\color.ts" />
     <TypeScriptCompile Include="ClientApp\src\types\forms.ts" />

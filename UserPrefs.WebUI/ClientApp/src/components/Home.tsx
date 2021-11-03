@@ -12,6 +12,7 @@ export class Home extends Component {
                 <p>Are you a manager?</p>
                 <ul>
                     <li><Link to="/user-preferences">View user preferences and add new users</Link></li>
+                    <li><Link to="/user-stats">View user stats</Link></li>
                 </ul>
                 <p>Are you a user?</p>
                 <ul>

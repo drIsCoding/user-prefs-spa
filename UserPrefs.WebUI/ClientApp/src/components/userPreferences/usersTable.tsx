@@ -67,7 +67,7 @@ export default function UsersTable({ data }) {
     } = useTable({
         columns,
         data,
-        initialState: { pageIndex: 0 }
+        initialState: { pageIndex: 0, pageSize: 15 }
     },
         useFilters,
         useSortBy,

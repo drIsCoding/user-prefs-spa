@@ -410,3 +410,8 @@ UserPrefs.WebUI/ClientApp/src/types/color.js.map
 UserPrefs.WebUI/ClientApp/src/types/forms.js
 UserPrefs.WebUI/ClientApp/src/types/User.js
 UserPrefs.WebUI/ClientApp/src/types/User.js.map
+UserPrefs.WebUI/ClientApp/src/components/userPreferences/usersTable.js.map
+UserPrefs.WebUI/ClientApp/src/components/userStats/userStatsContainer.js
+UserPrefs.WebUI/ClientApp/src/components/userStats/userStatsContainer.js.map
+UserPrefs.WebUI/ClientApp/src/components/userPreferences/usersTable.js.map
+UserPrefs.WebUI/ClientApp/src/components/userPreferences/usersTable.js.map

@@ -25,13 +25,13 @@ namespace UserPrefs.WebUI.Controllers
         {
             List<AgeRange> ageRanges = new List<AgeRange>
             {
-                new AgeRange { MinAge = 10, MaxAge = 19 },
+                new AgeRange { MinAge = 0, MaxAge = 19 },
                 new AgeRange { MinAge = 20, MaxAge = 29 },
                 new AgeRange { MinAge = 30, MaxAge = 39 },
                 new AgeRange { MinAge = 40, MaxAge = 49 },
                 new AgeRange { MinAge = 50, MaxAge = 59 },
                 new AgeRange { MinAge = 60, MaxAge = 69 },
-                new AgeRange { MinAge = 70, MaxAge = 79 }
+                new AgeRange { MinAge = 70, MaxAge = 150 }
             };
             var queries = new UserQueries(_usersRepo);
             var users = queries.GetAllUsers();

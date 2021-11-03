@@ -5,9 +5,9 @@ import UsersApi from '../../api/usersApi'
 import { Button } from 'reactstrap'
 import CreateUserModal from './createUserModal'
 import UsersTable from './usersTable'
-import UserStats from './userStats'
 import { CreateUserForm } from '../../types/forms'
 import { Alert } from 'reactstrap'
+import { Link } from 'react-router-dom'
 
 
 export default function UserPreferencesContainer() {
@@ -53,15 +53,14 @@ export default function UserPreferencesContainer() {
     return (
         <div>
             <h1>All Users</h1>
-            <p>A list of all the users and their color preferences</p>
-
-
-            <CreateUserModal visible={showModal} toggle={() => setShowModal(false)} handleCreateSuccess={handleNewUserCreation}/>
-            {/*<UserStats />*/}
 
             <button className="btn btn-primary float-right mb-4" onClick={() => setShowModal(true)}>Create New User</button>
-            {showSuccess && <Alert fade={true}>Success!</Alert>}
+            <p>A list of all the users and their color preferences (<Link to="user-stats">see user statistics</Link>)</p>
 
+            <CreateUserModal visible={showModal} toggle={() => setShowModal(false)} handleCreateSuccess={handleNewUserCreation}/>
+            
+            {showSuccess && <Alert fade={true}>Success!</Alert>}
+            
             {contents}
         </div>
      )
