@@ -386,3 +386,27 @@ FodyWeavers.xsd
 # JetBrains Rider
 .idea/
 *.sln.iml
+UserPrefs.WebUI/ClientApp/src/api/usersApi.js
+UserPrefs.WebUI/ClientApp/src/api/usersApi.js
+UserPrefs.WebUI/ClientApp/src/api/usersApi.js.map
+UserPrefs.WebUI/ClientApp/src/components/common/colorValues.js
+UserPrefs.WebUI/ClientApp/src/components/common/colorValues.js.map
+UserPrefs.WebUI/ClientApp/src/components/common/createUserFormComponent.js
+UserPrefs.WebUI/ClientApp/src/components/common/createUserFormComponent.js.map
+UserPrefs.WebUI/ClientApp/src/components/userEntry/userEntryContainer.js
+UserPrefs.WebUI/ClientApp/src/components/userEntry/userEntryContainer.js.map
+UserPrefs.WebUI/ClientApp/src/components/userPreferences/colorSwatch.js
+UserPrefs.WebUI/ClientApp/src/components/userPreferences/colorSwatch.js.map
+UserPrefs.WebUI/ClientApp/src/components/userPreferences/createUserModal.js
+UserPrefs.WebUI/ClientApp/src/components/userPreferences/createUserModal.js.map
+UserPrefs.WebUI/ClientApp/src/components/userPreferences/SelectColorFilter.js.map
+UserPrefs.WebUI/ClientApp/src/components/userPreferences/userPreferencesContainer.js
+UserPrefs.WebUI/ClientApp/src/components/userPreferences/userPreferencesContainer.js.map
+UserPrefs.WebUI/ClientApp/src/components/userPreferences/usersTable.js
+UserPrefs.WebUI/ClientApp/src/components/userPreferences/userStats.js
+UserPrefs.WebUI/ClientApp/src/types/ageColorInfo.js.map
+UserPrefs.WebUI/ClientApp/src/types/color.js
+UserPrefs.WebUI/ClientApp/src/types/color.js.map
+UserPrefs.WebUI/ClientApp/src/types/forms.js
+UserPrefs.WebUI/ClientApp/src/types/User.js
+UserPrefs.WebUI/ClientApp/src/types/User.js.map
