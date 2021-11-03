@@ -1,5 +1,5 @@
 ﻿import * as React from 'react'
-import { useEffect, useState } from "react"
+import { useEffect, useMemo, useState } from "react"
 import { User } from '../../types/user'
 import UsersApi from '../../api/usersApi'
 import { Button } from 'reactstrap'
@@ -30,7 +30,10 @@ export default function UserPreferencesContainer() {
     const getUsers = () => {
         UsersApi.getAllUsers().then(
             (u => {
-                setUserData(u);
+                //const columns= useMemo(() => columnSet, [columnSet]);
+                const memoData = useMemo(() => u, [u]);
+                setUserData(memoData);
+                console.log("setting user data");
                 setLoading(false);
             })
         );
