@@ -10,7 +10,8 @@ import UsersApi from '../../api/usersApi'
 
 interface Props {
     visible: boolean,
-    toggle: () => void
+    toggle: () => void,
+    handleCreateSuccess: (formData: CreateUserForm) => void
 }
 
 export default function CreateUserModal(props: Props) {
@@ -19,6 +20,8 @@ export default function CreateUserModal(props: Props) {
         console.log("submitting form!");
         console.log(formData);
         UsersApi.createUser(formData);
+        props.handleCreateSuccess(formData);
+        props.toggle();
     }
 
     const formId = "createUserForm";

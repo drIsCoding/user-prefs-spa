@@ -6,22 +6,41 @@ import { Button } from 'reactstrap'
 import CreateUserModal from './createUserModal'
 import Table from './usersTable'
 import UserStats from './userStats'
+import { CreateUserForm } from '../../types/forms'
+import { Alert } from 'reactstrap'
 
 
 export default function UserPreferencesContainer() {
     const [loading, setLoading] = useState(true);
     const [userData, setUserData] = useState<User[]>();
     const [showModal, setShowModal] = useState(false);
-
+    const [showSuccess, setShowSuccess] = useState(false);
 
     useEffect(() => {
+        getUsers();
+    }, [])
+
+    useEffect(() => {
+        const timer = setTimeout(() => {
+            setShowSuccess(false);
+        }, 5000);
+        return () => clearTimeout(timer);
+    }, [showSuccess]);
+
+    const getUsers = () => {
         UsersApi.getAllUsers().then(
             (u => {
                 setUserData(u);
                 setLoading(false);
             })
         );
-    }, [])
+    }
+
+    const handleNewUserCreation = (formData: CreateUserForm) => {
+        console.log(formData);
+        getUsers();
+        setShowSuccess(true);
+    }
 
     let contents = loading
         ? <p><em>Loading...</em></p>
@@ -29,11 +48,16 @@ export default function UserPreferencesContainer() {
 
     return (
         <div>
-            <h1 id="tabelLabel">User Preferences</h1>
-            <p>This component is getting user prefs data</p>
-            <button className="btn btn-primary" onClick={() => setShowModal(true)}>Enter New User</button>
-            <CreateUserModal visible={showModal} toggle={() => setShowModal(false)}/>
-            <UserStats/>
+            <h1>All Users</h1>
+            <p>A list of all the users and their color preferences</p>
+
+
+            <CreateUserModal visible={showModal} toggle={() => setShowModal(false)} handleCreateSuccess={handleNewUserCreation}/>
+            {/*<UserStats />*/}
+
+            <button className="btn btn-primary float-right mb-4" onClick={() => setShowModal(true)}>Create New User</button>
+            {showSuccess && <Alert fade={true}>Success!</Alert>}
+
             {contents}
         </div>
      )

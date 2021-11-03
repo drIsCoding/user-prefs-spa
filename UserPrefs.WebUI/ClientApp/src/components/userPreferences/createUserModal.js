@@ -9,6 +9,8 @@ function CreateUserModal(props) {
         console.log("submitting form!");
         console.log(formData);
         usersApi_1.default.createUser(formData);
+        props.handleCreateSuccess(formData);
+        props.toggle();
     };
     var formId = "createUserForm";
     return React.createElement(reactstrap_1.Modal, { toggle: props.toggle, isOpen: props.visible, centered: true },
