@@ -6,11 +6,12 @@ Open command prompt:
 2. `cd user-prefs-spa`
 2. `dotnet build`
 3. `dotnet run --project .\UserPrefs.WebUI\UserPrefs.WebUI.csproj`
-4. Navigate in web browser to `localhost:5000`
-  Note that starting the project in the browser takes a few minutes
+4. Navigate in web browser to `localhost:5000`  
 ## Suggested Additional Features
 - Edit and Delete user functionality
 - Allow users to enter their birthdate instead of their age
 - Let users search to see if they already submitted their info
 - Allow customization of the age groupings in the stats
 - Allow users to pick a custom color
+## Known Issues Under Investigation
+1. Users table is not immediately updating when a new user is created (requires page refresh)
