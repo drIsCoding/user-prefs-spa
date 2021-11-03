@@ -9,7 +9,7 @@ Open command prompt:
 4. Navigate in web browser to `localhost:5000`  
 ## Suggested Additional Features
 - Edit and Delete user functionality
-- Allow users to enter their birthdate instead of their age
+- Allow users to enter their birth date instead of their age
 - Let users search to see if they already submitted their info
 - Allow customization of the age groupings in the stats
 - Allow users to pick a custom color
