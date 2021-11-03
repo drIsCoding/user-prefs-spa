@@ -8,11 +8,7 @@ import {SelectColorFilter} from './selectColorFilter'
 import ColorSwatch from "./colorSwatch"
 import {ColorsDictionary} from "../common/colorValues"
 
-export default function Table({ data }) {
-
-    //for fast color name lookup
-    const [colorsDict, setColorsDict] = React.useState({});
-
+export default function UsersTable({ data }) {
 
     const columns = useMemo(() => [
         {
@@ -50,8 +46,7 @@ export default function Table({ data }) {
             },
             disableFilters: true
         }
-    ], [colorsDict])
-
+    ], [])
 
     // Use the state and functions returned from useTable to build your UI
     const {

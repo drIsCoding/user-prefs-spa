@@ -19,9 +19,8 @@ interface Props {
 }
 
 export default function CreateUserFormComponent(props: Props) {
-    const { register, control, setValue, handleSubmit, formState: { errors } } = useForm<FormData>();
-    const [chosenColor, setChosenColor] = useState("");
-
+    const { register, control, setValue, handleSubmit, formState} = useForm<FormData>();
+    const { errors } = formState;
 
     const onSubmit = (data: FormData, event) => {
         event.preventDefault();
@@ -29,19 +28,10 @@ export default function CreateUserFormComponent(props: Props) {
             firstName: data.firstName,
             lastName: data.lastName,
             age: parseInt(data.age),
-            colorHex: chosenColor
+            colorHex: data.colorHex
         }
         props.onSubmit(userForm);
     };
-
-    const handlePickerColorChange = (color) => {
-        setChosenColor(color.hex);
-    }
-
-    const handleSelectColorChange = (e: React.ChangeEvent<HTMLSelectElement>) => {
-        console.log(e.target.value);
-        setChosenColor(e.target.value);
-    }
 
     return (
         <form id={props.formId} onSubmit={handleSubmit(onSubmit)}>
@@ -70,22 +60,37 @@ export default function CreateUserFormComponent(props: Props) {
                 </div>
                 <div className="col-sm">
                     <label>Choose color preference</label>
-                    <select className={`mb-2 form-control ${errors.colorHex ? 'is-invalid' : ''}`}
+
+                    <Controller
+                        control={control}
                         name="colorHex"
-                        value={chosenColor}
-                        onChange={(e) => { console.log(e); setChosenColor(e.target.value) }}
-                        {...register("colorHex", { required: true })}>
-                        <option value="">None</option>
-                        {ColorsArray.map((color, i) => (
-                            <option key={color.hex} value={color.hex}>
-                                {color.name}
-                            </option>
-                        ))}
-                    </select>
+                        render={({ field: { value, onChange } }) => {
+                            return (
+                                <select className={`mb-2 form-control ${errors.colorHex ? 'is-invalid' : ''}`}
+                                    name="colorHex"
+                                    value={value}
+                                    onChange={onChange}
+                                    {...register("colorHex", { required: true })}>
+                                    <option value="">None</option>
+                                    {ColorsArray.map((color, i) => (
+                                        <option key={color.hex} value={color.hex}>
+                                            {color.name}
+                                        </option>
+                                    ))}
+                                </select>
+                            )
+                        }}
+                        rules= {{ required: true }}
+                    />
                     {errors.colorHex && <div className="invalid-feedback">You must choose a color.</div>}
 
-                    <CirclePicker width="210px" onChange={(color) => setChosenColor(color.hex)}
-                        color={chosenColor}
+
+                    <CirclePicker width="210px" onChange={(color) =>
+                        setValue("colorHex", color.hex, {
+                            shouldValidate: true,
+                            shouldDirty: true,
+                            shouldTouch: true
+                        })}
                         colors={HexArray} />
                 </div>
             </div>

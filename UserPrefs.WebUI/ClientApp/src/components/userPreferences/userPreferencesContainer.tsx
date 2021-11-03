@@ -4,7 +4,7 @@ import { User } from '../../types/user'
 import UsersApi from '../../api/usersApi'
 import { Button } from 'reactstrap'
 import CreateUserModal from './createUserModal'
-import Table from './usersTable'
+import UsersTable from './usersTable'
 import UserStats from './userStats'
 import { CreateUserForm } from '../../types/forms'
 import { Alert } from 'reactstrap'
@@ -30,9 +30,7 @@ export default function UserPreferencesContainer() {
     const getUsers = () => {
         UsersApi.getAllUsers().then(
             (u => {
-                //const columns= useMemo(() => columnSet, [columnSet]);
-                const memoData = useMemo(() => u, [u]);
-                setUserData(memoData);
+                setUserData(u);
                 console.log("setting user data");
                 setLoading(false);
             })
@@ -45,9 +43,12 @@ export default function UserPreferencesContainer() {
         setShowSuccess(true);
     }
 
+    const tableData = useMemo(() => userData, [userData]);
+
+
     let contents = loading
         ? <p><em>Loading...</em></p>
-        : <Table data={userData} />
+        : <UsersTable data={tableData} />
 
     return (
         <div>

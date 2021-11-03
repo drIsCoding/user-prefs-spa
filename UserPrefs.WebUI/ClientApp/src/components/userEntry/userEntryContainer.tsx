@@ -13,5 +13,8 @@ export default function UserEntryContainer() {
 
     const formId = "createUserForm";
 
-    return <CreateUserFormComponent formId={formId} onSubmit={submitUser}/>
+    return <>
+        <CreateUserFormComponent formId={formId} onSubmit={submitUser} />
+        <button className="btn btn-primary" form={formId} type="submit">Submit User Information</button>
+    </>
 }

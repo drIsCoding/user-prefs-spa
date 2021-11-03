@@ -17,8 +17,6 @@ interface Props {
 export default function CreateUserModal(props: Props) {
 
     const submitUser = (formData: CreateUserForm) => {
-        console.log("submitting form!");
-        console.log(formData);
         UsersApi.createUser(formData);
         props.handleCreateSuccess(formData);
         props.toggle();
