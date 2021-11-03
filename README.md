@@ -15,4 +15,4 @@ Open command prompt:
 - Allow users to pick a custom color
 ## Known Issues Under Investigation
 - Users table is not immediately updating when a new user is created
-- Filtering in the users table for first and last names are case sensitive ("mark" will not return "Mark")
+- Filtering is case sensitive in the users table for first and last names (searching for "mark" will not return "Mark")
