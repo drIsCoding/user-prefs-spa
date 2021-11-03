@@ -48,7 +48,7 @@ export default function UserStatsContainer() {
                             ageLabel = `< ${maxAge + 1}`;
                         }
                         else if (index === stats.length - 1) {
-                            ageLabel = `> ${minAge + 1}`;
+                            ageLabel = `> ${minAge - 1}`;
                         }
                         else {
                             ageLabel = `${minAge} - ${maxAge}`;
