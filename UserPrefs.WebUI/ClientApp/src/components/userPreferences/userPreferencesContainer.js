@@ -3,7 +3,6 @@ Object.defineProperty(exports, "__esModule", { value: true });
 var React = require("react");
 var react_1 = require("react");
 var usersApi_1 = require("../../api/usersApi");
-var reactstrap_1 = require("reactstrap");
 var createUserModal_1 = require("./createUserModal");
 var usersTable_1 = require("./usersTable");
 var userStats_1 = require("./userStats");
@@ -24,7 +23,7 @@ function UserPreferencesContainer() {
     return (React.createElement("div", null,
         React.createElement("h1", { id: "tabelLabel" }, "User Preferences"),
         React.createElement("p", null, "This component is getting user prefs data"),
-        React.createElement(reactstrap_1.Button, { onClick: function () { return setShowModal(true); }, color: "primary" }, "Enter New User"),
+        React.createElement("button", { className: "btn btn-primary", onClick: function () { return setShowModal(true); } }, "Enter New User"),
         React.createElement(createUserModal_1.default, { visible: showModal, toggle: function () { return setShowModal(false); } }),
         React.createElement(userStats_1.default, null),
         contents));

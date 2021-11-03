@@ -2,7 +2,6 @@
 import { useEffect, useState } from "react";
 import { useForm, Controller } from "react-hook-form";
 import { CirclePicker } from 'react-color'
-import UsersApi from "../../api/usersApi";
 import { CreateUserForm } from "../../types/forms";
 import { ColorsDictionary, HexArray, ColorsArray } from "./colorValues"
 
@@ -13,14 +12,18 @@ interface FormData {
     colorHex: string,
     displayColor: string
 };
-export default function CreateUserForm() {
+
+interface Props {
+    formId: string,
+    onSubmit: (formData: CreateUserForm) => void
+}
+
+export default function CreateUserFormComponent(props: Props) {
     const { register, control, setValue, handleSubmit, formState: { errors } } = useForm<FormData>();
     const [chosenColor, setChosenColor] = useState("");
 
 
     const onSubmit = (data: FormData, event) => {
-        console.log("submitting form!");
-        console.log(data);
         event.preventDefault();
         const userForm: CreateUserForm = {
             firstName: data.firstName,
@@ -28,7 +31,7 @@ export default function CreateUserForm() {
             age: parseInt(data.age),
             colorHex: chosenColor
         }
-        UsersApi.createUser(userForm);
+        props.onSubmit(userForm);
     };
 
     const handlePickerColorChange = (color) => {
@@ -41,10 +44,7 @@ export default function CreateUserForm() {
     }
 
     return (
-        <form onSubmit={handleSubmit(onSubmit)}>
-            <div className="alert alert-success" role="alert">
-                User successfully created!
-            </div>
+        <form id={props.formId} onSubmit={handleSubmit(onSubmit)}>
             <div className="form-group">
                 <label>First Name</label>
                 <input className={`form-control ${errors.firstName ? 'is-invalid' : ''}`}
@@ -89,7 +89,6 @@ export default function CreateUserForm() {
                         colors={HexArray} />
                 </div>
             </div>
-            <button className="btn btn-primary" type="submit">Submit</button>
         </form>
     )
 }

@@ -24,7 +24,7 @@
     <None Remove="ClientApp\src\api\statsApi.ts" />
     <None Remove="ClientApp\src\api\usersApi.ts" />
     <None Remove="ClientApp\src\components\common\colorValues.ts" />
-    <None Remove="ClientApp\src\components\common\createUserForm.tsx" />
+    <None Remove="ClientApp\src\components\common\createUserFormComponent.tsx" />
     <None Remove="ClientApp\src\components\createUserModal.tsx" />
     <None Remove="ClientApp\src\components\userEntry\userEntryContainer.tsx" />
     <None Remove="ClientApp\src\components\UserPreferences.tsx" />
@@ -48,7 +48,7 @@
     <TypeScriptCompile Include="ClientApp\src\api\statsApi.ts" />
     <TypeScriptCompile Include="ClientApp\src\api\usersApi.ts" />
     <TypeScriptCompile Include="ClientApp\src\components\common\colorValues.ts" />
-    <TypeScriptCompile Include="ClientApp\src\components\common\createUserForm.tsx" />
+    <TypeScriptCompile Include="ClientApp\src\components\common\createUserFormComponent.tsx" />
     <TypeScriptCompile Include="ClientApp\src\components\userEntry\userEntryContainer.tsx" />
     <TypeScriptCompile Include="ClientApp\src\components\userPreferences\colorSwatch.tsx" />
     <TypeScriptCompile Include="ClientApp\src\components\userPreferences\createUserModal.tsx" />

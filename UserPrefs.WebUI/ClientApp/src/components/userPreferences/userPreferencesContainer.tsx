@@ -31,7 +31,7 @@ export default function UserPreferencesContainer() {
         <div>
             <h1 id="tabelLabel">User Preferences</h1>
             <p>This component is getting user prefs data</p>
-            <Button onClick={() => setShowModal(true)} color="primary">Enter New User</Button>
+            <button className="btn btn-primary" onClick={() => setShowModal(true)}>Enter New User</button>
             <CreateUserModal visible={showModal} toggle={() => setShowModal(false)}/>
             <UserStats/>
             {contents}
