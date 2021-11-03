@@ -7,6 +7,7 @@ Open command prompt:
 2. `dotnet build`
 3. `dotnet run --project .\UserPrefs.WebUI\UserPrefs.WebUI.csproj`
 4. Navigate in web browser to `localhost:5000`
+Note that starting the project in the browser takes a few minutes
 ## Suggested Additional Features
 - Edit and Delete user functionality
 - Allow users to enter their birthdate instead of their age
