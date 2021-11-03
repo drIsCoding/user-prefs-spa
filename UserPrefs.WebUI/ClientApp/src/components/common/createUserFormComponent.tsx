@@ -85,7 +85,7 @@ export default function CreateUserFormComponent(props: Props) {
                     {errors.colorHex && <div className="invalid-feedback">You must choose a color.</div>}
 
 
-                    <CirclePicker width="210px" onChange={(color) =>
+                    <CirclePicker width="100%" onChange={(color) =>
                         setValue("colorHex", color.hex, {
                             shouldValidate: true,
                             shouldDirty: true,
