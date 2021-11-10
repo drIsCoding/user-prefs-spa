@@ -13,6 +13,7 @@ Open command prompt:
 - Let users search to see if they already submitted their info
 - Allow customization of the age groupings in the stats
 - Allow users to pick a custom color
+- Exporting
 ## Known Issues Under Investigation
 - Users table is not immediately updating when a new user is created
 - Filtering is case sensitive in the users table for first and last names (searching for "mark" will not return "Mark")
